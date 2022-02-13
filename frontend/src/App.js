@@ -1,39 +1,22 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import { render } from "react-dom";
+//import { ToastContainer } from 'react-toastify';
 import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-class App extends Component {
-state = {
-    data: null
-  };
+import Home from './Home/Home';
+import CreateQuizz from './Quizz/CreateQuizz';
 
-  componentDidMount() {
-    this.callBackendAPI()
-      .then(res => this.setState({ data: res.express }))
-      .catch(err => console.log(err));
-  }
-    // fetching the GET route from the Express server which matches the GET route from server.js
-  callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
-    const body = await response.json();
-
-    if (response.status !== 200) {
-      throw Error(body.message) 
-    }
-    return body;
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">{this.state.data}</p>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route exact path='/' element={<Home />} />
+        <Route path='create' element={<CreateQuizz />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
