@@ -1,0 +1,32 @@
+body {
+    background-color: #2b6777;
+}
+
+section {
+    background-color: #c8d8e4;
+    text-align: center;
+    vertical-align: middle;
+    max-width: 700px;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input {
+    border-radius: 50px;
+    height: 50px;
+    border: 1px solid rgb(39, 39, 39);
+    padding: 0px 20px 0px 20px;
+    margin-top: 10px;
+}
+
+.cross-btn {
+    border: none;
+    background-color: whitesmoke;
+    font-size: 1.5em;
+    color: grey;
+}
+
+.ques {
+    margin-right: 5px;
+}
