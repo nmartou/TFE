@@ -11,9 +11,9 @@ export default class CreateQuiz extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lastQuiz: "q-0",
-            lastNumber: 0,
-            item: [
+            title: "",
+            limitTime: null,
+            content: [
             {
                 id: "q-0",
                 number: 0,
@@ -26,6 +26,10 @@ export default class CreateQuiz extends Component {
         this.addQuestion = this.addQuestion.bind(this);
         this.addChoice = this.addChoice.bind(this);
         this.deleteChoice = this.deleteChoice.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.setTitle = this.setTitle.bind(this);
+        this.handleChangeQuestion = this.handleChangeQuestion.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     adaptOrder(choices, num) {
@@ -42,7 +46,7 @@ export default class CreateQuiz extends Component {
     //Supprime le choix désiré
     deleteChoice(event) {
         let arrayId = event.target.id.split("-");
-        let items = this.state.item;
+        let items = this.state.content;
         let num2 = parseInt(arrayId[2]);
         if(items[arrayId[1]].choice.length - 1 === num2) {
             items[arrayId[1]].choice.splice(num2)
@@ -57,19 +61,29 @@ export default class CreateQuiz extends Component {
     }
 
     handleChange(event) {
-        console.log(event.target.value);
+        let id = event.target.id.split("-");
+        let idQuestion = "q-" + id[1];
+        let value = event.target.value;
+        let items = this.state.content;
+        for(let item in items) {
+            if(items[item].id === idQuestion) {
+                items[item].choice[id[2]].res = value;
+                break;
+            }
+        }
+        this.setState({content: items});
     }
 
     deleteQuestion(id) {
         let stringId = id.split('-');
-        let items = this.state.item;
+        let items = this.state.content;
         items[parseInt(stringId[1])].splice(parseInt(stringId[1]), 1);
-        this.setState({item: items});
+        this.setState({content: items});
     }
 
     //Ajoute une question au questionnaire
     addQuestion() {
-        let list = this.state.item;
+        let list = this.state.content;
         let lastNum = list[list.length - 1].number;
         lastNum += 1;
         list.push({
@@ -79,12 +93,12 @@ export default class CreateQuiz extends Component {
             response: '',
             choice: [{letter: "A", res: "", pos: 0}, {letter: "B", res: "", pos: 1}]
         });
-        this.setState({item: list});
+        this.setState({content: list});
     }
 
     //Ajoute un choix à la question donnée
     addChoice(id) {
-        let items = this.state.item;
+        let items = this.state.content;
         let lastNum = 0;
         for(let idItem in items) {
             if(items[idItem].id === id) {
@@ -96,36 +110,65 @@ export default class CreateQuiz extends Component {
                 }
                 items[idItem].choice.push({letter: alpha[lastNum + 1], res: '', pos: lastNum + 1});
                 //return items;
-                this.setState({item: items});
+                this.setState({content: items});
             }
         }
     }
 
     handleSubmit() {
-        axios.post("http://localhost:5000/api/quiz/create", this.state.item)
+        console.log(this.state);
+        axios.post("http://localhost:5000/api/quiz/create", this.state)
             .then((response) => {
-                console.log(response);
+                console.log(response, "Post success !");
             })
             .catch((err) => {
                 console.log(err);
             })
     }
 
+    setTitle(event) {
+        this.setState({title: event.target.value});
+    }
+
+    setTimer(event) {
+        let value = event.target.value;
+        if(Number.isInteger(value) && value !== 0) {
+            this.setState({limitTime: value});
+        }
+    }
+
+    handleChangeQuestion = (event) => {
+        let value = event.target.value;
+        let items = this.state.content;
+        for(let item in items) {
+            if(items[item].id === event.target.id) {
+                items[item].question = value;
+                break;
+            }
+        }
+        this.setState({content: items});
+    }
+
     render() {
         return(
             <div>
                 <section>
-                    <input type="button" className='btn btn-primary' onClick={this.addQuestion} value="Ajout" />
                     <form id="quiz-form">
                         <h2>Quiz creator</h2>
-                        {this.state.item.map((item) => (
+                        <input type="button" className='btn btn-primary' onClick={this.addQuestion} value="Ajouter question" />
+                        <input type="button" className='btn btn-primary' onClick={this.handleSubmit} value="Envoyer" />
+                        <label>Temps du décompte (pas de valeur ou 0 = pas de limite de temps) : </label>
+                        <input type='text' className='input' onChange={this.setTimer} placeholder="Temps en seconde" />
+                        <h1>{this.state.title}</h1>
+                        <input type='text' className='input' onChange={this.setTitle} placeholder="Titre du Questionnaire" />
+                        {this.state.content.map((item) => (
                             <div id={item.id} key={item.number}>
                                 <h3>{item.question}</h3>
-                                <input className="input" type="text" placeholder='Question'></input>
+                                <input id={item.id} className="input" type="text" placeholder='Question' onChange={this.handleChangeQuestion} />
                                 {item.choice.map((res) => (
                                     <div key={1000 + res.pos}>
                                         <label className="ques">Réponse {res.letter} : </label>
-                                        <input className="input" type="text" onChange={this.handleChange}></input>
+                                        <input id={item.id + '-' + res.pos.toString()} className="input" type="text" onChange={this.handleChange}></input>
                                         <input type="button" id={item.id + '-' + res.pos.toString()} className="cross-btn bi bi-x" onClick={this.deleteChoice} value="X" />
                                     </div>
                                 ))}
@@ -133,6 +176,7 @@ export default class CreateQuiz extends Component {
                                 <input type='button' className="btn btn-outline-danger" onClick={() => this.deleteQuestion(item.id)} value="Supprimer" />
                             </div>
                         ))}
+                        <input className='btn btn-primary' type="button" onClick={this.handleSubmit} value="Envoyer" />
                     </form>
                 </section>
             </div>

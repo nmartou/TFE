@@ -6,6 +6,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import Home from './Home/Home';
 import CreateQuizz from './Quizz/CreateQuiz';
+import HomeGame from './Game/HomeGame';
+import FootballJumper from './Game/FootballJumper';
 
 //Return all routes of the site
 function App() {
@@ -13,7 +15,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path='/' element={<Home />} />
-        <Route path='create/quiz' element={<CreateQuizz />} />
+        <Route path='quiz/create' element={<CreateQuizz />} />
+        <Route path='games' element={<HomeGame />} />
+        <Route path='games/FootballJumper' element={<FootballJumper />} />
       </Routes>
     </BrowserRouter>
   );

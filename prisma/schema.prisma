@@ -1,12 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-    provider = "prisma-client.js"
+model quizz {
+  id_quizz    Int           @id @default(autoincrement())
+  title       String        @db.VarChar(50)
+  limit_time  DateTime?     @db.Time(0)
+  content     String?       @db.MediumText
+  score_quizz score_quizz[]
 }
 
-model Quizz {
-    id_quizz Int
+model score_game {
+  id_score   Int    @id @default(autoincrement())
+  game_name  String @db.VarChar(50)
+  best_score Float  @db.Float
+  user       user[]
+}
+
+model score_quizz {
+  id_score_quizz Int    @id @default(autoincrement())
+  id_quizz       Int
+  best_score     Float  @db.Float
+  quizz          quizz  @relation(fields: [id_quizz], references: [id_quizz], onDelete: NoAction, onUpdate: NoAction, map: "score_quizz_ibfk_1")
+  user           user[]
+
+  @@index([id_quizz], map: "id_quizz")
+}
+
+model user {
+  id_user        Int          @id @default(autoincrement())
+  pseudo         String       @db.VarChar(50)
+  password       String       @db.VarChar(100)
+  mail_adress    String       @db.VarChar(100)
+  status         String?      @db.VarChar(10)
+  id_score       Int?
+  id_score_quizz Int?
+  is_verified    Boolean?     @default(false)
+  score_game     score_game?  @relation(fields: [id_score], references: [id_score], onDelete: NoAction, onUpdate: NoAction, map: "user_ibfk_1")
+  score_quizz    score_quizz? @relation(fields: [id_score_quizz], references: [id_score_quizz], onDelete: NoAction, onUpdate: NoAction, map: "user_ibfk_2")
+
+  @@index([id_score], map: "id_score")
+  @@index([id_score_quizz], map: "id_score_quizz")
 }

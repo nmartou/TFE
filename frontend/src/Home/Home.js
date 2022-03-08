@@ -7,6 +7,12 @@ export default class Home extends Component {
                 <h1>
                     Bienvenue sur le site de François Maingoval
                 </h1>
+                <a href='/quiz/create'>
+                    <button className='btn btn-primary'>Créer un quiz</button>
+                </a>
+                <a href='/games'>
+                    <button className='btn btn-primary' >Section jeux</button>
+                </a>
             </div>
         );
     }

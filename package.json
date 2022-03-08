@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/nmartou/TFE#readme",
   "dependencies": {
-    "@prisma/client": "^3.10.0",
+    "@prisma/client": "^3.11.0-dev.33",
+    "cors": "^2.8.5",
     "create-react-app": "^5.0.0",
     "curl": "^0.1.4",
     "dotenv": "^16.0.0",
@@ -32,6 +33,6 @@
     "typeorm": "^0.2.44"
   },
   "devDependencies": {
-    "prisma": "^3.10.0"
+    "prisma": "^3.11.0-dev.33"
   }
 }

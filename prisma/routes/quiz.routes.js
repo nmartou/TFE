@@ -1,11 +1,10 @@
 const router = require("express").Router();
-const quizController = require('../controllers/QuizControllers');
+const QuizController = require('../controllers/QuizControllers');
 
 router.route('/create')
-    .get(quizController.getQuiz)
+    .post(QuizController.createQuiz)
 
-router.get('/', async(req, res, next) => {
-    res.send({ message: 'Ok api is working on "/"'});
-})
+router.route('/')
+    .get(QuizController.getQuiz)
 
 module.exports = router;
