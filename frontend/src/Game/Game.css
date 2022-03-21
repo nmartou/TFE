@@ -1,5 +1,6 @@
 body {
     text-align: center;
+    align-items: center;
 }
 
 .img-games {
@@ -19,7 +20,8 @@ body {
 section {
     max-width: 800px;
     border-radius: 10px;
-    margin: 20px;
+    margin: auto;
+    min-height: 200px;
 }
 
 .img-like {

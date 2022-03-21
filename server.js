@@ -8,6 +8,14 @@ require("dotenv").config();
 const app = express(); 
 const port = process.env.PORT || 5000;
 
+app.use(express.static('public', {
+  setHeaders: function(res, path) {
+      if(path.endsWith(".unityweb")){
+          res.set("Content-Encoding", "gzip");
+      }
+  }
+}));
+
 //var publicDir = require('path').join(__dirname,'/public'); 
 app.use(express.static('public')); 
 
@@ -17,7 +25,7 @@ app.use(morgan("dev"));
 
 app.use(cors({
   credentials: true,
-  origin: 'http://localhost:3000'
+  origin: 'http://127.0.0.1:3000'
 }))
 
 // This displays message that the server running and listening to specified port

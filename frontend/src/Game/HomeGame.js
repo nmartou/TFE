@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Game.css';
 
-import logo from "../assets/QuiAVoleOL-Bot.jpg";
+import logo from "../assets/Brugge.jpg";
 
 export default class HomeGame extends Component {
     constructor(props) {

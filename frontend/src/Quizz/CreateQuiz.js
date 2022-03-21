@@ -18,7 +18,7 @@ export default class CreateQuiz extends Component {
                 id: "q-0",
                 number: 0,
                 question: "",
-                response: '',
+                response: null,
                 choice: [{letter: "A", res: "", pos: 0}, {letter: "B", res: "", pos: 1}],
             }
             ]
@@ -30,6 +30,7 @@ export default class CreateQuiz extends Component {
         this.setTitle = this.setTitle.bind(this);
         this.handleChangeQuestion = this.handleChangeQuestion.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleChangeChoice = this.handleChangeChoice.bind(this);
     }
 
     adaptOrder(choices, num) {
@@ -149,26 +150,37 @@ export default class CreateQuiz extends Component {
         this.setState({content: items});
     }
 
+    handleChangeChoice = (event) => {
+        let value = event.target.value;
+        let items = this.state.content;
+        let idString = event.target.name.split("-");
+        let id = idString[1];
+        items[id].response = value;
+        this.setState({content: items});
+    }
+
     render() {
         return(
             <div>
                 <section>
-                    <form id="quiz-form">
+                    <form id="quiz-form" onSubmit={this.handleSubmit}>
                         <h2>Quiz creator</h2>
-                        <input type="button" className='btn btn-primary' onClick={this.addQuestion} value="Ajouter question" />
-                        <input type="button" className='btn btn-primary' onClick={this.handleSubmit} value="Envoyer" />
+                        
+                        <input type="button" className='btn btn-primary' onClick={this.handleSubmit} value="Envoyer" /><br />
+                        <input type="button" className='btn btn-primary' onClick={this.addQuestion} value="Ajouter question" /><br />
                         <label>Temps du décompte (pas de valeur ou 0 = pas de limite de temps) : </label>
                         <input type='text' className='input' onChange={this.setTimer} placeholder="Temps en seconde" />
                         <h1>{this.state.title}</h1>
-                        <input type='text' className='input' onChange={this.setTitle} placeholder="Titre du Questionnaire" />
+                        <input type='text' className='input' onChange={this.setTitle} required placeholder="Titre du Questionnaire" />
                         {this.state.content.map((item) => (
                             <div id={item.id} key={item.number}>
                                 <h3>{item.question}</h3>
-                                <input id={item.id} className="input" type="text" placeholder='Question' onChange={this.handleChangeQuestion} />
+                                <input id={item.id} className="input" type="text" required placeholder='Question' onChange={this.handleChangeQuestion} />
                                 {item.choice.map((res) => (
                                     <div key={1000 + res.pos}>
                                         <label className="ques">Réponse {res.letter} : </label>
-                                        <input id={item.id + '-' + res.pos.toString()} className="input" type="text" onChange={this.handleChange}></input>
+                                        <input type="radio" value={res.pos} name={item.id} required onChange={this.handleChangeChoice} />
+                                        <input id={item.id + '-' + res.pos.toString()} className="input" required type="text" onChange={this.handleChange}></input>
                                         <input type="button" id={item.id + '-' + res.pos.toString()} className="cross-btn bi bi-x" onClick={this.deleteChoice} value="X" />
                                     </div>
                                 ))}
@@ -176,7 +188,7 @@ export default class CreateQuiz extends Component {
                                 <input type='button' className="btn btn-outline-danger" onClick={() => this.deleteQuestion(item.id)} value="Supprimer" />
                             </div>
                         ))}
-                        <input className='btn btn-primary' type="button" onClick={this.handleSubmit} value="Envoyer" />
+                        <input className='btn btn-primary' type="submit"  value="Envoyer" />
                     </form>
                 </section>
             </div>
