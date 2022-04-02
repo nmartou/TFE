@@ -1,0 +1,44 @@
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+const argon2 = require('argon2');
+
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
+
+class AuthService {
+    static async register(data) {
+        data.password = argon2.hash(data.password);
+        let user = prisma.user.create({
+            mail_address: data.email,
+            password: data.password,
+            pseudo: data.pseudo
+        })
+        data.accessToken = await jwt.signAccessToken(user);
+
+        return data;
+    }
+    
+    static async login(data) {
+        const { email, password } = data;
+        const user = await prisma.user.findUnique({
+            where: {
+                email
+            }
+        });
+        if (!user) {
+            throw createError.NotFound('User not registered')
+        }
+        const checkPassword = await argon2.verify(user.password, password);
+        if (!checkPassword) throw createError.Unauthorized('Email address or password not valid')
+        delete user.password
+        const accessToken = await jwt.signAccessToken(user)
+        return { ...user, accessToken }
+    }
+
+    static async all() {
+        const allUsers = await prisma.user.findMany();
+        return allUsers;
+    }
+  }
+  
+  module.exports = AuthService;

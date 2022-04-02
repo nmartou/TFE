@@ -19,6 +19,7 @@
   "homepage": "https://github.com/nmartou/TFE#readme",
   "dependencies": {
     "@prisma/client": "^3.11.0-dev.33",
+    "argon2": "^0.28.5",
     "cors": "^2.8.5",
     "create-react-app": "^5.0.0",
     "curl": "^0.1.4",
@@ -27,6 +28,7 @@
     "express-draft": "^1.0.4",
     "http": "^0.0.1-security",
     "http-errors": "^2.0.0",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "reflect-metadata": "^0.1.13",

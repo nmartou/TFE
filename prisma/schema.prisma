@@ -34,10 +34,10 @@ model score_quizz {
 
 model user {
   id_user        Int          @id @default(autoincrement())
-  pseudo         String       @db.VarChar(50)
+  pseudo         String       @unique(map: "pseudo") @db.VarChar(50)
   password       String       @db.VarChar(100)
-  mail_adress    String       @db.VarChar(100)
-  status         String?      @db.VarChar(10)
+  mail_address   String       @unique(map: "mail_address") @db.VarChar(100)
+  status         String?      @default("user") @db.VarChar(10)
   id_score       Int?
   id_score_quizz Int?
   is_verified    Boolean?     @default(false)

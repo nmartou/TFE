@@ -8,6 +8,7 @@ import Home from './Home/Home';
 import CreateQuizz from './Quizz/CreateQuiz';
 import HomeGame from './Game/HomeGame';
 import FootballJumper from './Game/FootballJumper';
+import SignUp from "./Auth/SignUp";
 
 //Return all routes of the site
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path='quiz/create' element={<CreateQuizz />} />
         <Route path='games' element={<HomeGame />} />
         <Route path='games/FootballJumper' element={<FootballJumper />} />
+        <Route path='signUp' element={<SignUp />} />
       </Routes>
     </BrowserRouter>
   );

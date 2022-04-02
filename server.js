@@ -1,5 +1,6 @@
 const express = require('express');
 const quizRoutes = require('./prisma/routes/quiz.routes');
+const authRoutes = require('./prisma/routes/auth.route');
 const createError = require('http-errors');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -23,10 +24,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
-app.use(cors({
+/*app.use(cors({
   credentials: true,
   origin: 'http://127.0.0.1:3000'
-}))
+}))*/
+
+var corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200 // For legacy browser support
+}
+
+app.use(cors(corsOptions));
 
 // This displays message that the server running and listening to specified port
 app.listen(port, () => console.log(`Listening on port ${port}`)); 
@@ -43,12 +51,11 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 });*/
 
 app.use("/api/quiz", quizRoutes);
+app.use("/api/auth", authRoutes);
 
 app.use((req, res, next) => {
   next(createError.NotFound());
 })
-
-
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
