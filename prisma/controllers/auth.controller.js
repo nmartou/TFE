@@ -1,10 +1,12 @@
 const auth = require('../services/auth.service');
 const createError = require('http-errors');
 
-class authController {
-    static register = async (req, res, next) => {
+const authController = {
+    register : async (req, res, next) => {
         try {
+            console.log("0");
             const user = await auth.register(req.body);
+            console.log("0.5", user);
             res.status(200).json({
                 status: true,
                 message: 'User created successfully',
@@ -14,8 +16,8 @@ class authController {
         catch (e) {
             next(createError(e.statusCode, e.message))
         }
-    }
-    static login = async (req, res, next) => {
+    },
+    login : async (req, res, next) => {
          try {
             const data = await auth.login(req.body)
             res.status(200).json({
@@ -26,8 +28,8 @@ class authController {
         } catch (e) {
             next(createError(e.statusCode, e.message))
         }
-    }
-    static all = async (req, res, next) => {
+    },
+    all : async (req, res, next) => {
         try {
             const users = await auth.all();
             res.status(200).json({
