@@ -1,6 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const argon2 = require('argon2');
+const res = require('express/lib/response');
 
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
@@ -8,14 +9,26 @@ const {signAccessToken, verifyAccessToken} = require('../../utils');
 
 class AuthService {
     static async register(data) {
-        data.password = argon2.hash(data.password, {type: argon2.argon2id});
-        let user = prisma.user.create({
-            data
-        });
-        console.log("3", data);
-        data.accessToken = await signAccessToken(user);
-        console.log("4");
-        return data;
+        try {
+            let { pseudo, mail_address, password } = data;
+            console.log("1");
+            password = await argon2.hash(password, {type: argon2.argon2id});
+            console.log("2", data);
+            const user = await prisma.user.create({
+                data: {
+                    pseudo: pseudo,
+                    mail_address: mail_address,
+                    password: password
+                }
+            });
+            console.log("3", password);
+            data.accessToken = await signAccessToken(user);
+            console.log("4");
+            return data;
+        }
+        catch (e) {
+            res.json({message: e});
+        }
     }
     
     static async login(data) {

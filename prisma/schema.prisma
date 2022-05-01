@@ -33,28 +33,17 @@ model score_quizz {
 }
 
 model user {
-  id_user        String       @id @unique @default(uuid())
+  id_user        Int          @id @unique @default(autoincrement())
   pseudo         String       @unique(map: "pseudo") @db.VarChar(50)
   password       String       @db.VarChar(100)
   mail_address   String       @unique(map: "mail_address") @db.VarChar(100)
   status         String?      @default("user") @db.VarChar(10)
   id_score       Int?
   id_score_quizz Int?
-  refreshTokens  refreshToken[]
   is_verified    Boolean?     @default(false)
   score_game     score_game?  @relation(fields: [id_score], references: [id_score], onDelete: NoAction, onUpdate: NoAction, map: "user_ibfk_1")
   score_quizz    score_quizz? @relation(fields: [id_score_quizz], references: [id_score_quizz], onDelete: NoAction, onUpdate: NoAction, map: "user_ibfk_2")
 
   @@index([id_score], map: "id_score")
   @@index([id_score_quizz], map: "id_score_quizz")
-}
-
-model refreshToken {
-  id          String   @id @unique @default(uuid())
-  hashedToken String
-  userId      String
-  user        user     @relation(fields: [userId], references: [id_user], onDelete: Cascade)
-  revoked     Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
 }

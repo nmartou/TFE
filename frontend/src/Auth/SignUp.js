@@ -7,7 +7,7 @@ class SignUp extends Component {
         super(props);
 
         this.state = {
-            email: "test@gmail.com",
+            mail_address: "test@gmail.com",
             pseudo: "test",
             password: "123",
             verified: false
@@ -36,7 +36,7 @@ class SignUp extends Component {
     }
 
     onChangeEmail(event) {
-        this.setState({email: event.target.value});
+        this.setState({mail_address: event.target.value});
     }
 
     onChangePassword(event) {
@@ -48,7 +48,7 @@ class SignUp extends Component {
     }
 
     onChangeVerified(event) {
-        if(event.target.value == this.state.password) this.setState({verified: true});
+        if(event.target.value === this.state.password) this.setState({verified: true});
         else this.setState({verified: false});
     }
 
@@ -59,7 +59,7 @@ class SignUp extends Component {
                     <label>Pseudonyme</label>
                     <input type='text' required placeholder='Pseudo' onChange={this.onChangePseudo} value={this.state.pseudo} />
                     <label>Email</label>
-                    <input type='email' required placeholder='Email' onChange={this.onChangeEmail} value={this.state.email} />
+                    <input type='email' required placeholder='Email' onChange={this.onChangeEmail} value={this.state.mail_address} />
                     <label>Mot de passe</label>
                     <input type='password' placeholder='Mot de passe' required onChange={this.onChangePassword} value={this.state.password} />
                     <label>Vérification du mot de passe</label>

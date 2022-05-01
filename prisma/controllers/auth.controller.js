@@ -1,20 +1,35 @@
 const auth = require('../services/auth.service');
 const createError = require('http-errors');
+const { signAccessToken } = require('../../utils');
+const argon2 = require('argon2');
+
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
 const authController = {
     register : async (req, res, next) => {
         try {
-            console.log("0");
-            const user = await auth.register(req.body);
-            console.log("0.5", user);
-            res.status(200).json({
+            //let user = await auth.register(req.body);
+            let { pseudo, mail_address, password } = req.body;
+            password = await argon2.hash(password, {type: argon2.argon2id});
+            const user = await prisma.user.create({
+                data: {
+                    pseudo: pseudo,
+                    mail_address: mail_address,
+                    password: password
+                }
+            });
+            const token = await signAccessToken(user);
+            res.json({
                 status: true,
                 message: 'User created successfully',
-                data: user
-            })
+                data: user,
+                token: token
+            });
         }
         catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(createError(e));
+            //res.json({message: e});
         }
     },
     login : async (req, res, next) => {
