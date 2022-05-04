@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {Component} from 'react';
 import "./Auth.css";
+//const { SERVER_URL_BE, SERVER_URL_FE } = process.env;
 
 class SignUp extends Component {
     constructor(props) {
@@ -20,15 +21,18 @@ class SignUp extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    onSubmit() {
-        /*if(!this.state.verified) {
+    onSubmit(event) {
+        event.preventDefault();
+        if(!this.state.verified) {
             console.log("Second password is different from the first one");
             return false;
-        }*/
-        console.log(this.state);
+        }
         axios.post('http://localhost:5000/api/auth/', this.state)
             .then((res) => {
                 console.log(res);
+                if(res.status === 200) {
+                    window.location.href = "http://localhost:3000/login";
+                }
             })
             .catch((err) => {
                 console.log(err);
