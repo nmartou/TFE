@@ -1,6 +1,5 @@
 import React, { useState, createContext } from 'react';
 import axios from 'axios';
-import res from 'express/lib/response';
 
 export const AuthContext = createContext();
 
@@ -10,26 +9,24 @@ export function AuthProvider(props) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const login = async (data) => {
+    const login = async(mail, password) => {
         setLoading(true);
         setError(null);
-        try {
-            await axios.post('http://localhost:5000/api/auth/login', data)
-                .then((res) => {
-                    setUser(res.data.user);
-                    setToken(res.data.token);
-                    setLoading(false);
-                    return res.status;
-                })
-                .catch((err) => {
-                    setError(err.response.data.message);
-                    setLoading(false);
-                    //return err.status;
-                });
-        } catch (err) {
-            setError(err.response.data.message);
-            setLoading(false);
-        }
+        await axios.post('http://localhost:5000/api/auth/login', {mail_address: mail, password: password})
+            .then((res) => {
+                console.log(res.data);
+                setUser(res.data.user);
+                setToken(res.data.accessToken);
+                setLoading(false);
+                console.log(user, token)
+                if(res.status === 200) window.location.href="http://localhost:3000/";
+            })
+            .catch((err) => {
+                console.log(err);
+                setError(err.message);
+                setLoading(false);
+                return err.status;
+            });
     }
 
     const logout = () => {
@@ -66,10 +63,7 @@ export function AuthProvider(props) {
             login,
             logout,
             auth,
-            mailAddress,
-            setMailAddress,
-            password,
-            setPassword
+            setLoading
         }}>
             {props.children}
         </AuthContext.Provider>

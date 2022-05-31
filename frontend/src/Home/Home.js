@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Auth/AuthContext';
 
-export default function Home(props) {
-    const { user, token, error, logout } = useContext(AuthContext);
+export default function Home() {
+    const { user, token, logout } = useContext(AuthContext);
 
     return(
         <div>
@@ -29,6 +29,7 @@ export default function Home(props) {
                         <button className='btn btn-primary'>Se connecter</button>
                     </a>
                 </>}
+                <div>{token}</div>
         </div>
     );
 }

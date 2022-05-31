@@ -34,11 +34,24 @@ const authController = {
     },
     login : async (req, res, next) => {
          try {
-            const data = await auth.login(req.body)
+            const { mail_address, password } = req.body;
+            const user = await prisma.user.findUnique({
+                where: {
+                    mail_address
+                }
+            });
+
+            if (!user) {
+                throw createError.NotFound('User not registered');
+            }
+            const checkPassword = await argon2.verify(user.password, password);
+            if (!checkPassword) throw createError.Unauthorized('Email address or password not valid');
+            delete user.password;
+            const accessToken = await signAccessToken(user);
+
             res.status(200).json({
-                status: true,
-                message: "Account login successful",
-                data
+                user,
+                accessToken
             })
         } catch (e) {
             next(createError(e.statusCode, e.message))
