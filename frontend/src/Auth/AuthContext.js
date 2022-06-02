@@ -1,5 +1,6 @@
 import React, { useState, createContext } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export const AuthContext = createContext();
 
@@ -14,17 +15,16 @@ export function AuthProvider(props) {
         setError(null);
         await axios.post('http://localhost:5000/api/auth/login', {mail_address: mail, password: password})
             .then((res) => {
-                console.log(res.data);
+                toast.success('Connexion réussie');
                 setUser(res.data.user);
                 setToken(res.data.accessToken);
                 setLoading(false);
-                console.log(user, token)
-                if(res.status === 200) window.location.href="http://localhost:3000/";
             })
             .catch((err) => {
                 console.log(err);
                 setError(err.message);
                 setLoading(false);
+                toast.error('Mauvais adresse mail et/ou mot de passe');
                 return err.status;
             });
     }

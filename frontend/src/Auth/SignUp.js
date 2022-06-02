@@ -1,7 +1,10 @@
 import axios from 'axios';
 import React, {Component} from 'react';
 import "./Auth.css";
-//const { SERVER_URL_BE, SERVER_URL_FE } = process.env;
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
+const API_URL = 'http://localhost:5000/api/auth/';
 
 class SignUp extends Component {
     constructor(props) {
@@ -23,11 +26,12 @@ class SignUp extends Component {
 
     onSubmit(event) {
         event.preventDefault();
+        if(this.state.password.length < 8) return toast.error("Le mot de passe doit contenir au moins 8 caractères");
         if(!this.state.verified) {
             console.log("Second password is different from the first one");
             return false;
         }
-        axios.post('http://localhost:5000/api/auth/', this.state)
+        axios.post(API_URL, this.state)
             .then((res) => {
                 console.log(res);
                 if(res.status === 200) {
@@ -59,6 +63,7 @@ class SignUp extends Component {
     render() {
         return(
             <div>
+                <ToastContainer />
                 <form onSubmit={this.onSubmit}>
                     <label>Pseudonyme</label>
                     <input type='text' required placeholder='Pseudo' onChange={this.onChangePseudo} value={this.state.pseudo} />
@@ -70,12 +75,6 @@ class SignUp extends Component {
                     <input type='password' placeholder='Retapez votre mot de passe' required onChange={this.onChangeVerified} />
                     <input type='submit' value="S'inscrire" />
                 </form>
-                <div>
-                    <p>{this.state.password}</p>
-                    <p>{this.state.email}</p>
-                    <p>{this.state.pseudo}</p>
-                    <p>{this.state.verified}</p>
-                </div>
             </div>
         )
     }

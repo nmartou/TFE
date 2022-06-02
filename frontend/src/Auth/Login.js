@@ -1,9 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../Auth/AuthContext';
+import { Navigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import "./Login.css";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Login() {
-    const { login } = useContext(AuthContext);
+    const { login, user, token } = useContext(AuthContext);
 
     const [ password, setPassword ] = useState('');
     const [ mailAddress, setMailAddress ] = useState('');
@@ -16,6 +19,7 @@ export default function Login() {
 
     return (
         <div>
+            <ToastContainer />
             <form id="login" onSubmit={handleSubmit}>
                 <h1>Se connecter</h1>
                 <div className="form-outline mb-4">
@@ -30,18 +34,20 @@ export default function Login() {
 
                 <div className="row mb-4">
                     <div className="col d-flex justify-content-center">
-                    <div className="form-check">
-                        <input className="form-check-input" type="checkbox" id="form2Example31" value={isForgotChecked} onChange={(e) => setIsForgotChecked(e)} />
-                        <label className="form-check-label" htmlFor="form2Example31"> Se souvenir de moi </label>
-                    </div>
+                        <div className="form-check">
+                            <input className="form-check-input" type="checkbox" id="form2Example31" value={isForgotChecked} onChange={(e) => setIsForgotChecked(e)} />
+                            <label className="form-check-label" htmlFor="form2Example31"> Se souvenir de moi </label>
+                        </div>
                     </div>
 
                     <div className="col">
-                    <a href="#!">Mot de passe oublié ?</a>
+                        <a href="#!">Mot de passe oublié ?</a>
                     </div>
                 </div>
 
                 <button type="submit" className="btn btn-primary btn-block mb-4">Se connecter</button>
+                
+                <div>{user && token ? <Navigate to="/" /> : <></>} </div>
 
                 <div className="text-center">
                     <p>Pas encore membre ? <a href="/signup">S'inscrire</a></p>

@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Auth/AuthContext';
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Home() {
     const { user, token, logout } = useContext(AuthContext);
@@ -9,6 +11,7 @@ export default function Home() {
             <h1>
                 Bienvenue sur le site de François Maingoval
             </h1>
+            <ToastContainer />
             <a href='/quiz/create'>
                 <button className='btn btn-primary'>Créer un quiz</button>
             </a>
@@ -17,8 +20,8 @@ export default function Home() {
             </a>
             {user && token ?
                 <>
-                    <p>Bienvenue !</p>
-                    <button onClick={logout}>Se déconnecter</button>
+                    <p>Bienvenue {user? user.pseudo + " " : <></>}!</p>
+                    <button className='btn btn-primary' onClick={logout}>Se déconnecter</button>
                 </>
             :   <>
                     <a href='/SignUp'>
@@ -29,7 +32,6 @@ export default function Home() {
                         <button className='btn btn-primary'>Se connecter</button>
                     </a>
                 </>}
-                <div>{token}</div>
         </div>
     );
 }
