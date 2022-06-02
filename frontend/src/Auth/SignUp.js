@@ -3,8 +3,7 @@ import React, {Component} from 'react';
 import "./Auth.css";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-
-const API_URL = 'http://localhost:5000/api/auth/';
+import { API_URL } from '../utils';
 
 class SignUp extends Component {
     constructor(props) {
@@ -31,7 +30,7 @@ class SignUp extends Component {
             console.log("Second password is different from the first one");
             return false;
         }
-        axios.post(API_URL, this.state)
+        axios.post(API_URL + "/auth/", this.state)
             .then((res) => {
                 console.log(res);
                 if(res.status === 200) {

@@ -40,8 +40,9 @@ export function AuthProvider(props) {
         try {
             await axios.get('http://localhost:5000/api/auth/')
                 .then((res) => {
-                    setUser(res.data.user);
-                    setLoading(false);
+                    console.log(res);
+                    //setUser(res.data.user);
+                    //setLoading(false);
                 }
                 ).catch((err) => {
                     setError(err.response.data.message);
