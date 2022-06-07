@@ -1,4 +1,4 @@
-import { compose } from 'redux';
+//import { compose } from 'redux';
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import quizSlice from "./QuizSlice";
 
@@ -11,7 +11,7 @@ const store = configureStore({
 	]
 })
 
-let composeEnhancers = compose;
+//let composeEnhancers = compose;
 
 //Sert à éviter le ralentissement des perfs de l'appli
 /*if (__DEV__) {

@@ -3,22 +3,34 @@ import "./NavBar.css";
 import { AuthContext } from "../Auth/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Navigate, useLocation } from "react-router-dom";
 
 export default function NavBar() {
-    const { user, setUser, auth, token, setToken, logout } = useContext(AuthContext);
+    const { user, setUser, auth, token, setToken, logout, setIsLoading } = useContext(AuthContext);
 
     useEffect(() => {
         if (!token && !user) {
+            setIsLoading(true);
             var usr = localStorage.getItem("user");
             var tkn = localStorage.getItem("token");
             if(tkn && usr) {
                 setUser(JSON.parse(usr));
                 setToken(tkn);
+                setIsLoading(false);
             } else if(tkn && !usr) {
                 auth();
+                setIsLoading(false);
             }
+            //CheckLocation();
         }
     }, [token, user, auth, setUser, setToken]);
+
+    /*const CheckLocation = () => {
+        const location = useLocation();
+        if (location.pathname === "/quiz/create" && user && !user.status === "admin" && token) {
+            return (<Navigate to="/" />)
+        }
+    }*/
 
     return (
         <div>

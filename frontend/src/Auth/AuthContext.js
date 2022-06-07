@@ -7,11 +7,11 @@ export const AuthContext = createContext();
 export function AuthProvider(props) {
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
     const login = async(mail, password) => {
-        setLoading(true);
+        setIsLoading(true);
         setError(null);
         await axios.post('http://localhost:5000/api/auth/login', {mail_address: mail, password: password})
             .then((res) => {
@@ -20,12 +20,12 @@ export function AuthProvider(props) {
                 setToken(res.data.accessToken);
                 localStorage.setItem("user", JSON.stringify(res.data.user));
                 localStorage.setItem("token", res.data.accessToken);
-                setLoading(false);
+                setIsLoading(false);
             })
             .catch((err) => {
                 console.log(err);
                 setError(err.message);
-                setLoading(false);
+                setIsLoading(false);
                 toast.error('Mauvais adresse mail et/ou mot de passe');
                 return err.status;
             });
@@ -39,23 +39,23 @@ export function AuthProvider(props) {
     }
 
     const auth = async() => {
-        setLoading(true);
+        setIsLoading(true);
         setError(null);
         try {
             await axios.get('http://localhost:5000/api/auth/')
                 .then((res) => {
                     console.log(res);
                     //setUser(res.data.user);
-                    //setLoading(false);
+                    setIsLoading(false);
                 }
                 ).catch((err) => {
                     setError(err.response.data.message);
-                    setLoading(false);
+                    setIsLoading(false);
                 }
             );
         } catch (err) {
             setError(err.response.data.message);
-            setLoading(false);
+            setIsLoading(false);
         }
     }
 
@@ -65,12 +65,12 @@ export function AuthProvider(props) {
             setUser,
             token,
             setToken,
-            loading,
+            isLoading,
             error,
             login,
             logout,
             auth,
-            setLoading
+            setIsLoading
         }}>
             {props.children}
         </AuthContext.Provider>

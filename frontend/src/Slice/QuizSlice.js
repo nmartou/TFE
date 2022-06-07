@@ -6,6 +6,14 @@ const InitialState = {
     listQuiz: [],
 }
 
+export const GetListQuiz = createAsyncThunk(
+    'quiz/GetListQuiz', 
+    async () => { 
+        const response = await axios.get(API_URL + '/quiz/all');
+        return response.data;
+    }
+);
+
 const quizSlice = createSlice({
     name: 'quiz',
     initialState: InitialState,
@@ -15,11 +23,22 @@ const quizSlice = createSlice({
         },
     },
     extraReducers: {
+        [GetListQuiz.fulfilled]: (state, action) => {
+            let tempArray = action.payload;
+            tempArray.forEach(element => {
+                element.content = JSON.parse(element.content);
+            });
+            state.listQuiz = tempArray;
+        },
+        [GetListQuiz.rejected]: (state, action) => {
+            console.log(action.error);
+        },
     },
 });
 
 export const quizMethods = {
-    ...quizSlice.actions
+    ...quizSlice.actions,
+    GetListQuiz,
 }
 
 export default quizSlice;

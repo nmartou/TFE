@@ -2,7 +2,7 @@ body {
     background-color: #2b6777;
 }
 
-section {
+section.create-quiz {
     background-color: #c8d8e4;
     text-align: center;
     vertical-align: middle;
@@ -92,11 +92,26 @@ td.last-center-child {
 table {
     margin-left: auto;
     margin-right: auto;
-    width: 90%;
+    width: 100%;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 tbody, thead {
     width: 90%;
+}
+
+button.btn-list-quiz {
+    background-color: #c8d8e4;
+    border-radius: 40px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+div.div-button {
+    text-align: right;
+}
+
+section.list-quiz-section {
+    max-width: 90%;
 }

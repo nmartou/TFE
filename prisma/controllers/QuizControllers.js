@@ -20,6 +20,14 @@ const QuizController = {
     },
     getQuiz : async(req, res, next) => {
         res.send({message: "Get Quiz !"});
+    },
+    getAllQuiz : async(req, res, next) => {
+        try {
+            const quizz = await prisma.quizz.findMany();
+            res.json(quizz);
+        } catch (error) {
+            res.json({message: error});
+        }
     }
 }
 

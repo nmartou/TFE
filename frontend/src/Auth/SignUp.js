@@ -4,7 +4,6 @@ import "./Auth.css";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { API_URL } from '../utils';
-import { Navigate } from 'react-router-dom';
 
 
 class SignUp extends Component {

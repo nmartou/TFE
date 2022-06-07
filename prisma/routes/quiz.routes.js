@@ -7,4 +7,7 @@ router.route('/create')
 router.route('/')
     .get(QuizController.getQuiz)
 
+router.route('/all')
+    .get(QuizController.getAllQuiz)
+
 module.exports = router;
