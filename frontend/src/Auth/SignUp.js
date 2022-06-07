@@ -4,6 +4,8 @@ import "./Auth.css";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { API_URL } from '../utils';
+import { Navigate } from 'react-router-dom';
+
 
 class SignUp extends Component {
     constructor(props) {
@@ -64,15 +66,24 @@ class SignUp extends Component {
             <div>
                 <ToastContainer />
                 <form onSubmit={this.onSubmit}>
-                    <label>Pseudonyme</label>
-                    <input type='text' required placeholder='Pseudo' onChange={this.onChangePseudo} value={this.state.pseudo} />
-                    <label>Email</label>
-                    <input type='email' required placeholder='Email' onChange={this.onChangeEmail} value={this.state.mail_address} />
-                    <label>Mot de passe</label>
-                    <input type='password' placeholder='Mot de passe' required onChange={this.onChangePassword} value={this.state.password} />
-                    <label>Vérification du mot de passe</label>
-                    <input type='password' placeholder='Retapez votre mot de passe' required onChange={this.onChangeVerified} />
-                    <input type='submit' value="S'inscrire" />
+                    <h2>S'inscrire</h2>
+                    <div className="form-outline mb-4">
+                        <label className="form-label" htmlFor="pseudo">Pseudonyme</label>
+                        <input className="form-control" type='text' required id="pseudo" placeholder='Pseudo' onChange={this.onChangePseudo} value={this.state.pseudo} />
+                    </div>
+                    <div className="form-outline mb-4">
+                        <label className="form-label">Email</label>
+                        <input className="form-control" type='email' required placeholder='Email' onChange={this.onChangeEmail} value={this.state.mail_address} />
+                    </div>
+                    <div className="form-outline mb-4">
+                        <label className="form-label">Mot de passe</label>
+                        <input className="form-control" type='password' placeholder='Mot de passe' required onChange={this.onChangePassword} value={this.state.password} />
+                    </div>
+                    <div className="form-outline mb-4">
+                        <label className="form-label">Vérification du mot de passe</label>
+                        <input className="form-control" type='password' placeholder='Retapez votre mot de passe' required onChange={this.onChangeVerified} />
+                    </div>
+                    <input className='btn btn-primary' type='submit' value="S'inscrire" />
                 </form>
             </div>
         )

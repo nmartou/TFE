@@ -18,6 +18,8 @@ export function AuthProvider(props) {
                 toast.success('Connexion réussie');
                 setUser(res.data.user);
                 setToken(res.data.accessToken);
+                localStorage.setItem("user", JSON.stringify(res.data.user));
+                localStorage.setItem("token", res.data.accessToken);
                 setLoading(false);
             })
             .catch((err) => {
@@ -32,6 +34,8 @@ export function AuthProvider(props) {
     const logout = () => {
         setUser(null);
         setToken(null);
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
     }
 
     const auth = async() => {
@@ -58,7 +62,9 @@ export function AuthProvider(props) {
     return (
         <AuthContext.Provider value={{
             user,
+            setUser,
             token,
+            setToken,
             loading,
             error,
             login,

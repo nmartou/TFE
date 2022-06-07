@@ -30,3 +30,73 @@ section {
 .ques {
     margin-right: 5px;
 }
+
+tr {
+    background-color: #c8d8e4;
+    margin-bottom: 10px;
+    text-align: left;
+    width: auto;
+}
+
+th, td {
+    margin-bottom: 10px;
+}
+
+th.first-child {
+    border-top-left-radius: 40px;
+    padding: 20px 0px 20px 20px;
+}
+
+th.last-child {
+    border-top-right-radius: 40px;
+    padding: 20px 20px 20px 0px;
+}
+
+th {
+    border-bottom: 2px solid black;
+}
+
+td {
+    border-bottom: 1px solid grey;
+}
+
+td.first-child {
+    padding: 20px 0px 20px 20px;
+}
+
+td.last-child {
+    padding: 20px 20px 20px 0px;
+}
+
+td.last-first-child {
+    padding: 20px 0px 20px 20px;
+    border: none;
+    border-bottom-left-radius: 40px;
+}
+
+td.last-last-child {
+    padding: 20px 20px 20px 0px;
+    border: none;
+    border-bottom-right-radius: 40px;
+}
+
+td.last-center-child {
+    border: none;
+    padding: 20px;
+}
+
+.center-child {
+    padding: 20px;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+tbody, thead {
+    width: 90%;
+}

@@ -5,13 +5,20 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function NavBar() {
-    const { user, auth, token, logout } = useContext(AuthContext);
+    const { user, setUser, auth, token, setToken, logout } = useContext(AuthContext);
 
     useEffect(() => {
-        if (token) {
-            auth();
+        if (!token && !user) {
+            var usr = localStorage.getItem("user");
+            var tkn = localStorage.getItem("token");
+            if(tkn && usr) {
+                setUser(JSON.parse(usr));
+                setToken(tkn);
+            } else if(tkn && !usr) {
+                auth();
+            }
         }
-    }, [token]);
+    }, [token, user, auth, setUser, setToken]);
 
     return (
         <div>
@@ -23,7 +30,7 @@ export default function NavBar() {
                             <a className="nav-link" href="/games">Section Jeux</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/quiz/create">Section Quiz</a>
+                            <a className="nav-link" href="/quiz">Section Quiz</a>
                         </li>
                         {user && token ? (
                             <li className="nav-item">
