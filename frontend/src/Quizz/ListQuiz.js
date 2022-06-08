@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../Auth/AuthContext";
 import "./Quiz.css";
 
 import { mapDispatchToProps, mapStateToProps } from "../Slice/Dispatch";
 import { connect, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 function ListQuiz(props) {
     const quiz = props.quiz;
@@ -20,10 +21,14 @@ function ListQuiz(props) {
         }
     }, [quiz]);*/
 
+    const setCurrentQuiz = (object) => {
+        dispatch(props.setCurrentQuiz(object));
+    }
+
     return (
         <div>
             <section className="list-quiz-section">
-                {user && user.status === "admin" ? (
+                {user && token && user.status === "admin" ? (
                     <div className="div-button">
                         <button className="btn-list-quiz" onClick={() => window.location.href = "/quiz/create"}>Créer un quiz</button>
                     </div>) : <></>}
@@ -32,7 +37,8 @@ function ListQuiz(props) {
                         <tr>
                             <th className="first-child">Titre</th>
                             <th className="center-child">Nombre de question</th>
-                            <th className="last-child">Timer</th>
+                            <th className="center-child">Timer</th>
+                            <th className="last-child">Jouer</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,7 +47,12 @@ function ListQuiz(props) {
                             <tr key={index}>
                                 <td className={index >= quiz.listQuiz.length - 1 ? "last-first-child" : "first-child"}>{quizz.title}</td>
                                 <td className={index >= quiz.listQuiz.length - 1 ? "last-center-child" : "center-child"}>{quizz.content.length}</td>
-                                <td className={index >= quiz.listQuiz.length - 1 ? "last-last-child" : "last-child"}>{quizz.limitTime ? "Oui" : "Non"}</td>
+                                <td className={index >= quiz.listQuiz.length - 1 ? "last-center-child" :  "center-child"}>{quizz.limitTime ? "Oui" : "Non"}</td>
+                                <td className={index >= quiz.listQuiz.length - 1 ? "last-last-child" : "last-child"}>
+                                    <Link to={{pathname:'/quiz/' + quizz.id_quizz, state: quizz }}>
+                                        <button onClick={() => setCurrentQuiz(quizz)}>Play !</button>
+                                    </Link>
+                                </td>
                             </tr>
                     ))) : (<></>)}
                     </tbody>

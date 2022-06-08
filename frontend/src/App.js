@@ -1,5 +1,4 @@
 import React from 'react';
-//import { ToastContainer } from 'react-toastify';
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,6 +14,7 @@ import NavBar from './NavBar/NavBar';
 import ListQuiz from './Quizz/ListQuiz';
 import { Provider } from 'react-redux';
 import store from './Slice/Store';
+import Quiz from './Quizz/Quiz';
 
 //Return all routes of the site
 function App() {
@@ -31,6 +31,8 @@ function App() {
             <Route path='signUp' element={<SignUp />} />
             <Route path='login' element={<Login />} />
             <Route path='quiz' element={<ListQuiz />} />
+            <Route path='quiz/:id' element={<Quiz />} />
+            <Route path='*' element={<Home />} />
           </Routes>
         </BrowserRouter>
       </Provider>

@@ -1,36 +1,50 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./NavBar.css";
 import { AuthContext } from "../Auth/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Navigate, useLocation } from "react-router-dom";
 
 export default function NavBar() {
-    const { user, setUser, auth, token, setToken, logout, setIsLoading } = useContext(AuthContext);
+    const { user, setUser, auth, token, setToken, logout, setIsLoading, isLoading } = useContext(AuthContext);
+    const [ isUser, setIsUser ] = useState(false);
 
     useEffect(() => {
+        setIsLoading(true);
         if (!token && !user) {
-            setIsLoading(true);
             var usr = localStorage.getItem("user");
             var tkn = localStorage.getItem("token");
             if(tkn && usr) {
                 setUser(JSON.parse(usr));
                 setToken(tkn);
-                setIsLoading(false);
+                CheckLocation();
             } else if(tkn && !usr) {
                 auth();
-                setIsLoading(false);
             }
-            //CheckLocation();
+            else {
+                setUser(true);
+            }
         }
-    }, [token, user, auth, setUser, setToken]);
+        setIsLoading(false);
+    }, [token, user]);
 
-    /*const CheckLocation = () => {
-        const location = useLocation();
-        if (location.pathname === "/quiz/create" && user && !user.status === "admin" && token) {
-            return (<Navigate to="/" />)
+    useEffect(() => {
+        if(!isLoading) {
+            CheckLocation();
+            setIsUser(false);
         }
-    }*/
+    }, [isUser]);
+
+    const CheckLocation = () => {
+        let location = window.location.pathname;
+        let usr = localStorage.getItem('user');
+        usr = JSON.parse(usr);
+        if (location == "/quiz/create" && (!usr || usr.status !== "admin")) {
+            return window.location.href = "/";
+        }
+        else if (location == "/quiz/*" && !user) {
+            return window.location.href = "/login";
+        }
+    }
 
     return (
         <div>

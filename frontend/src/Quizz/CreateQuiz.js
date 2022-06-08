@@ -1,8 +1,6 @@
-import React, { Component, useContext, useEffect } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import './Quiz.css';
-import { Navigate } from 'react-router-dom';
-import { AuthContext } from '../Auth/AuthContext';
 
 const alpha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
                 "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
@@ -193,13 +191,13 @@ export default class CreateQuiz extends Component {
                         <input className='btn btn-primary' type="submit"  value="Envoyer" />
                     </form>
                 </section>
-                <VerifyIfAdmin />
+                
             </div>
         )
     }
 }
 
-function VerifyIfAdmin() {
+/*function VerifyIfAdmin() {
     const { user, token, isLoading } = useContext(AuthContext);
 
     useEffect(() => {
@@ -211,4 +209,4 @@ function VerifyIfAdmin() {
     }, [user]);
     
     return (<></>);
-}
+}*/

@@ -4,6 +4,7 @@ import { API_URL } from '../utils';
 
 const InitialState = {
     listQuiz: [],
+    currentQuiz: null,
 }
 
 export const GetListQuiz = createAsyncThunk(
@@ -20,6 +21,9 @@ const quizSlice = createSlice({
     reducers: {
         setListQuiz: (state, action) => {
             state.listQuiz = action.payload;
+        },
+        setCurrentQuiz: (state, action) => {
+            state.currentQuiz = action.payload;
         },
     },
     extraReducers: {
