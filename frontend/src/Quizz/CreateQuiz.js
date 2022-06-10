@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Quiz.css';
+import { toast } from 'react-toastify';
 
 const alpha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
                 "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
@@ -31,6 +32,7 @@ export default class CreateQuiz extends Component {
         this.handleChangeQuestion = this.handleChangeQuestion.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleChangeChoice = this.handleChangeChoice.bind(this);
+        this.setTimer = this.setTimer.bind(this);
     }
 
     adaptOrder(choices, num) {
@@ -116,11 +118,12 @@ export default class CreateQuiz extends Component {
         }
     }
 
-    handleSubmit() {
+    handleSubmit(e) {
         console.log(this.state);
         axios.post("http://localhost:5000/api/quiz/create", this.state)
             .then((response) => {
-                console.log(response, "Post success !");
+                console.log("Post success !");
+                toast.success('Quiz créé avec succès !');
             })
             .catch((err) => {
                 console.log(err);
@@ -133,8 +136,15 @@ export default class CreateQuiz extends Component {
 
     setTimer(event) {
         let value = event.target.value;
-        if(Number.isInteger(value) && value !== 0) {
-            this.setState({limitTime: value});
+        console.log(value);
+        if(Number.isInteger(parseInt(value)) && value > 0) {
+            this.setState({limitTime: parseInt(value)});
+        }
+        else if(value == "" || (Number.isInteger(parseInt(value)) && parseInt(value) == 0)) {
+            this.setState({limitTime: null});
+        }
+        else {
+            toast.error('La valeur entrée est incorrect !');
         }
     }
 

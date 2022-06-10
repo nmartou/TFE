@@ -15,7 +15,7 @@ const QuizController = {
             });
             res.json(quiz);
         } catch (error) {
-            res.json({message: error});
+            res.status(500).json({message: error});
         }
     },
     getQuiz : async(req, res, next) => {
