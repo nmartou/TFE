@@ -47,10 +47,10 @@ function ListQuiz(props) {
                             <tr key={index}>
                                 <td className={index >= quiz.listQuiz.length - 1 ? "last-first-child" : "first-child"}>{quizz.title}</td>
                                 <td className={index >= quiz.listQuiz.length - 1 ? "last-center-child" : "center-child"}>{quizz.content.length}</td>
-                                <td className={index >= quiz.listQuiz.length - 1 ? "last-center-child" :  "center-child"}>{quizz.limitTime ? "Oui" : "Non"}</td>
+                                <td className={index >= quiz.listQuiz.length - 1 ? "last-center-child" :  "center-child"}>{quizz.limit_time ? "Oui" : "Non"}</td>
                                 <td className={index >= quiz.listQuiz.length - 1 ? "last-last-child" : "last-child"}>
                                     <Link to={{pathname:'/quiz/' + quizz.id_quizz, state: quizz }}>
-                                        <button onClick={() => setCurrentQuiz(quizz)}>Play !</button>
+                                        <button className="button-play" onClick={() => setCurrentQuiz(quizz)}>Jouer</button>
                                     </Link>
                                 </td>
                             </tr>
