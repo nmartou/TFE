@@ -1,0 +1,81 @@
+div.home {
+    background-color: #012E40;
+    background-image: url("../assets/dessinateur.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+section.invisible-section {
+    margin-bottom: 15%;
+}
+
+section.author-section {
+    background-color: #024959;
+    border-radius: 0px;
+}
+
+div.author-text {
+    width: 50%;
+    margin: 20px;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: white;
+    padding: 5px;
+}
+
+div.author-img {
+    width: 50%;
+    margin: 20px;
+}
+
+@media screen and (min-width: 800px) {
+    section.author-section {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 799px) {
+    section.author-section {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+    }
+
+    section.invisible-section {
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
+
+    div.author-text {
+        width: 100%;
+        margin: 0px;
+        padding-bottom: 10px;
+    }
+
+    div.author-img {
+        width: 100%;
+        margin: 0px;
+        padding-bottom: 10px;
+    }
+}
+
+.know-more-button {
+    border: none;
+    padding: 5px;
+    background-color: #F2E3D5;
+    border-radius: 5px;
+}
+
+.know-more-button a {
+    color: black;
+}
+
+.know-more-button a:active {
+    color: black;
+}
+
+.know-more-button a:hover {
+    color: grey;
+}

@@ -53,10 +53,10 @@ export default function NavBar() {
 
                     <ul className="nav justify-content-center">
                         <li className="navbar-item">
-                            <a className="nav-link" href="/games">Section Jeux</a>
+                            <a className="nav-link" href="/games">Jeux</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/quiz">Section Quiz</a>
+                            <a className="nav-link" href="/quiz">Quiz</a>
                         </li>
                         {user && token ? (
                             <li className="nav-item">
