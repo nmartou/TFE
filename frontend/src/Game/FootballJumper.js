@@ -31,7 +31,7 @@ export default class FootballJumper extends Component {
         return(
             <>
                 <p>Hello there</p>
-                <section>
+                <section className="game-section">
                     <Unity 
                         unityContext={this.unityContext}
                         style={{

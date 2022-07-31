@@ -10,14 +10,14 @@ export default class HomeGame extends Component {
     }
     render() {
         return (
-            <>
+            <div className='home-game'>
                 <p>Home Game page</p>
-                <section>
+                <section className='game-section'>
                     <a href='/games/FootballJumper'>
                         <img className='img-games' alt='Bande dessinée Qui a volé OL-Bot, tome 1' src={logo}></img>
                     </a>
                 </section>
-            </>
+            </div>
         )
     }
 }

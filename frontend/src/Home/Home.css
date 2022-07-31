@@ -1,17 +1,40 @@
 div.home {
-    background-color: #012E40;
+    background-color: linear-gradient(#012E40, #0F4F5A);
     background-image: url("../assets/dessinateur.jpg");
     background-repeat: no-repeat;
     background-size: 100%;
+    text-align: center;
+}
+
+section.author-section, section.actu-section {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 section.invisible-section {
-    margin-bottom: 15%;
+    margin: 0px;
+    height: 5px;
+}
+
+.author-title {
+    margin-top: 15%;
+    text-align: center;
+    background-color: #024959;
+    width: 30%;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    margin-bottom: 20px;
+    border: solid white 3px;
+    padding-top: 20px;
 }
 
 section.author-section {
-    background-color: #024959;
-    border-radius: 0px;
+    background: linear-gradient(#024959, 70%, #037f9b);
+    border-radius: 20px;
+    border: solid white 3px;
 }
 
 div.author-text {
@@ -27,11 +50,24 @@ div.author-text {
 div.author-img {
     width: 50%;
     margin: 20px;
+    text-align: center;
+}
+
+div.author-img img {
+    border-radius: 20px;
 }
 
 @media screen and (min-width: 800px) {
     section.author-section {
         display: flex;
+    }
+
+    section.actu-section {
+        display: flex;
+    }
+
+    .actu {
+        width: 40%;
     }
 }
 
@@ -41,6 +77,8 @@ div.author-img {
         margin-left: auto;
         margin-right: auto;
         align-items: center;
+        border: none;
+        border-radius: 0px;
     }
 
     section.invisible-section {
@@ -51,6 +89,7 @@ div.author-img {
     div.author-text {
         width: 100%;
         margin: 0px;
+        margin-bottom: 20px;
         padding-bottom: 10px;
     }
 
@@ -58,6 +97,28 @@ div.author-img {
         width: 100%;
         margin: 0px;
         padding-bottom: 10px;
+    }
+
+    div.author-img img {
+        width: 200px;
+        border-radius: 20px;
+    }
+
+    .author-title {
+        width: 90%;
+    }
+
+    .actu {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    section.actu-section {
+        width: 100%;
+    }
+
+    img.bd-second {
+        display: none;
     }
 }
 
@@ -78,4 +139,57 @@ div.author-img {
 
 .know-more-button a:hover {
     color: grey;
+}
+
+.actu-title {
+    text-align: center;
+    color: white;
+    margin-top: 5%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.actu {
+    border-radius: 10px;
+    border: solid white 3px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #024959;
+    color: white;
+    padding: 10px;
+}
+
+.actu img {
+    max-width: 250px;
+    max-height: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+section.actu-section {
+    width: 100%;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.actu-date {
+    color: lightgrey;
+    font-size: 12px;
+}
+
+section.bd-section {
+    width: 100%;
+    text-align: center;
+    margin-top: 5%;
+    background-color: #F2E3D5;
+    margin-bottom: 5%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+div.bd-div img {
+    width: 200px;
+    margin-right: 20px;
+    margin-left: 20px;
+    border-radius: 20px;
+    border: solid black 2px;
 }

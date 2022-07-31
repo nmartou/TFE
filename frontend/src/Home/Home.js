@@ -2,6 +2,10 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../Auth/AuthContext';
 import './Home.css';
 import Francois from "../assets/Francois_Maingoval.jpg";
+import Ada from '../assets/ada-enigma.jfif';
+import Barbara from '../assets/barbara-wolf.jpg';
+import Satan from '../assets/empreinte-de-satan.jpg';
+import Corpus from '../assets/corpus-christi_illustration.jpg';
 
 export default function Home() {
     const { user, token } = useContext(AuthContext);
@@ -9,7 +13,11 @@ export default function Home() {
     return(
         <div className='home'>
             <section className='invisible-section'></section>
+            <div className='author-title'>
+                <h2>Qui suis-je ?</h2>
+            </div>
             <section className='author-section'>
+                
                 <div className='author-text'>
                     <p>François Maingoval dit Maingoval, né le 5 mai 19751 à Uccle dans l’arrondissement de Bruxelles-Capitale est
                         un artiste-peintre et scénariste de bande dessinée belge, principalement connu pour sa bande dessinée Ada Enigma et 
@@ -20,19 +28,29 @@ export default function Home() {
                     <img src={Francois} alt='Photo de François Maingoval' />
                 </div>
             </section>
+            <h2 className='actu-title'>Actualités</h2>
             <section className='actu-section'>
-                <div>
-                    <img alt="" src="" />
-                    <p>Une actualité qui marque sans pour autant être la plus présente dans ce monde.</p>
-                    <button>Voir plus</button>
+                <div className='actu'>
+                    <img alt="" src={Corpus} />
+                    <p>FRANCOIS MAINGOVAL ET ERIC ALBERT - CORPUS CHRISTI</p>
+                    <p className='actu-date'>21 MAI 2013</p>
+                    <button className='know-more-button'><a href="https://www.generationbd.com/interviews/20-interviews-ecrites/2451-francois-maingoval-et-eric-albert-corpus-christi.html">Voir plus</a></button>
                 </div>
-                <div>
+                <div className='actu'>
                     <img alt="" src="" />
                     <p>Une autre actualité. Elle se trouve être dans un problème plus fréquent que la première qu'on a vu passer avant.</p>
-                    <button>Voir plus</button>
+                    <p className='actu-date'></p>
+                    <button className='know-more-button'>Voir plus</button>
                 </div>
             </section>
-            <section className='bd-section'></section>
+            <section className='bd-section'>
+                <h2 className='bd-title'>Bandes dessinées</h2>
+                <div className='bd-div'>
+                    <img alt="Bande dessinée de François Maingoval" src={Ada} />
+                    <img className='bd-second' alt="Bande dessinée de François Maingoval" src={Barbara} />
+                    <img className='bd-second' alt="Bande dessinée de François Maingoval" src={Satan} />
+                </div>
+            </section>
         </div>
     );
 }

@@ -1,5 +1,9 @@
 body {
-    background-color: #012E40;
+    background: linear-gradient(#012E40, #766453);
+    background-repeat: no-repeat;
+    height: 100%;
+    margin: 0px;
+    background-attachment: fixed;
 }
 
 section.create-quiz {
