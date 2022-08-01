@@ -6,6 +6,8 @@ import Ada from '../assets/ada-enigma.jfif';
 import Barbara from '../assets/barbara-wolf.jpg';
 import Satan from '../assets/empreinte-de-satan.jpg';
 import Corpus from '../assets/corpus-christi_illustration.jpg';
+import OL from '../assets/OL-coupe.jpg';
+import Neron from '../assets/alix-neron.jpg';
 
 export default function Home() {
     const { user, token } = useContext(AuthContext);
@@ -31,16 +33,16 @@ export default function Home() {
             <h2 className='actu-title'>Actualités</h2>
             <section className='actu-section'>
                 <div className='actu'>
-                    <img alt="" src={Corpus} />
+                    <img alt="Photo de groupe avec François Maingoval et Eric Albert" src={Corpus} />
                     <p>FRANCOIS MAINGOVAL ET ERIC ALBERT - CORPUS CHRISTI</p>
                     <p className='actu-date'>21 MAI 2013</p>
                     <button className='know-more-button'><a href="https://www.generationbd.com/interviews/20-interviews-ecrites/2451-francois-maingoval-et-eric-albert-corpus-christi.html">Voir plus</a></button>
                 </div>
                 <div className='actu'>
-                    <img alt="" src="" />
-                    <p>Une autre actualité. Elle se trouve être dans un problème plus fréquent que la première qu'on a vu passer avant.</p>
-                    <p className='actu-date'></p>
-                    <button className='know-more-button'>Voir plus</button>
+                    <img alt="Bande dessinée Qui a volé OL-bot de François Maingoval" src={OL} />
+                    <p>QUI A VOLE OL-BOT ? LA NOUVELLE BD DE FRANCOIS MAINGOVAL…</p>
+                    <p className='actu-date'>3 MARS 2020</p>
+                    <button className='know-more-button'><a href="https://www.lyonpremiere.fr/mes-infos/qui-a-vole-ol-bot-la-nouvelle-bd-de-francois-maingoval/">Voir plus</a></button>
                 </div>
             </section>
             <section className='bd-section'>
@@ -48,7 +50,7 @@ export default function Home() {
                 <div className='bd-div'>
                     <img alt="Bande dessinée de François Maingoval" src={Ada} />
                     <img className='bd-second' alt="Bande dessinée de François Maingoval" src={Barbara} />
-                    <img className='bd-second' alt="Bande dessinée de François Maingoval" src={Satan} />
+                    <img className='bd-second' alt="Bande dessinée de François Maingoval" src={Neron} />
                 </div>
             </section>
         </div>
