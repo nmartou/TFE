@@ -11,9 +11,9 @@ class SignUp extends Component {
         super(props);
 
         this.state = {
-            mail_address: "test@gmail.com",
-            pseudo: "test",
-            password: "123",
+            mail_address: "",
+            pseudo: "",
+            password: "",
             verified: false
         }
 
@@ -64,8 +64,8 @@ class SignUp extends Component {
         return(
             <div>
                 <ToastContainer />
-                <form onSubmit={this.onSubmit}>
-                    <h2>S'inscrire</h2>
+                <form className='signup' onSubmit={this.onSubmit}>
+                    <h2 className='signup-title'>S'inscrire</h2>
                     <div className="form-outline mb-4">
                         <label className="form-label" htmlFor="pseudo">Pseudonyme</label>
                         <input className="form-control" type='text' required id="pseudo" placeholder='Pseudo' onChange={this.onChangePseudo} value={this.state.pseudo} />
@@ -81,6 +81,12 @@ class SignUp extends Component {
                     <div className="form-outline mb-4">
                         <label className="form-label">Vérification du mot de passe</label>
                         <input className="form-control" type='password' placeholder='Retapez votre mot de passe' required onChange={this.onChangeVerified} />
+                    </div>
+                    <div className='signup-gpu'>
+                        <input className='signup-checkbox' type="checkbox" required />
+                        <span className='signup-gpu-text'>
+                            Accepter les <a className='gpu' href="http://localhost:3000/gpu">conditions d'utilisations</a> du site
+                        </span>
                     </div>
                     <input className='btn btn-primary' type='submit' value="S'inscrire" />
                 </form>

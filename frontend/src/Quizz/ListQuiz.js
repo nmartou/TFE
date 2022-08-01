@@ -26,13 +26,13 @@ function ListQuiz(props) {
     }
 
     return (
-        <div>
+        <div className="list-quiz">
             <section className="list-quiz-section">
                 {user && token && user.status === "admin" ? (
                     <div className="div-button">
                         <button className="btn-list-quiz" onClick={() => window.location.href = "/quiz/create"}>Créer un quiz</button>
                     </div>) : <></>}
-                <table>
+                <table className="list-quiz-table">
                     <thead>
                         <tr>
                             <th className="first-child">Titre</th>

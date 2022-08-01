@@ -1,3 +1,18 @@
+body {
+    background: linear-gradient(#012E40, #766453);
+    background-repeat: no-repeat;
+    height: 100%;
+    margin: 0px;
+    padding: 0;
+    background-attachment: fixed;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 div.home {
     background-color: linear-gradient(#012E40, #0F4F5A);
     background-image: url("../assets/dessinateur.jpg");
@@ -29,6 +44,7 @@ section.invisible-section {
     margin-bottom: 20px;
     border: solid white 3px;
     padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 section.author-section {

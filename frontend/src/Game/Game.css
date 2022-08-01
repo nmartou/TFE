@@ -27,3 +27,8 @@ section.game-section {
 .img-like {
     width: 50px;
 }
+
+.home-game-title {
+    color: white;
+    margin-top: 5%;
+}

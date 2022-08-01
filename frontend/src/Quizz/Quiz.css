@@ -1,19 +1,28 @@
-body {
-    background: linear-gradient(#012E40, #766453);
-    background-repeat: no-repeat;
-    height: 100%;
-    margin: 0px;
-    background-attachment: fixed;
-}
+/* Create quiz page */
 
 section.create-quiz {
-    background-color: #c8d8e4;
     text-align: center;
-    vertical-align: middle;
-    max-width: 700px;
-    align-items: center;
     margin-left: auto;
     margin-right: auto;
+    border: none;
+    width: 90%;
+}
+
+form.quiz-form {
+    width: 100%;
+}
+
+h2.create-quiz-main-title {
+    padding: 10px;
+    border: solid black 2px;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 300px;
+}
+
+label.create-quiz-label-timer {
+    margin-right: 5px;
 }
 
 .input {
@@ -22,6 +31,34 @@ section.create-quiz {
     border: 1px solid rgb(39, 39, 39);
     padding: 0px 20px 0px 20px;
     margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+input.create-quiz-add-response {
+    border-radius: 20px;
+    background-color: #F2E3D5;
+    padding: 10px;
+    border: solid grey 1px;
+    margin-bottom: 10px;
+}
+
+input.create-quiz-add-question {
+    border-radius: 20px;
+    background-color: #012E40;
+    color: white;
+    padding: 10px;
+    border: solid grey 1px;
+    margin-bottom: 20px;
+}
+
+input.create-quiz-delete-question {
+    margin-bottom: 10px;
+}
+
+/********************/
+
+div.list-quiz {
+    text-align: center;
 }
 
 .cross-btn {
@@ -47,12 +84,10 @@ th, td {
 }
 
 th.first-child {
-    border-top-left-radius: 40px;
     padding: 20px 0px 20px 20px;
 }
 
 th.last-child {
-    border-top-right-radius: 40px;
     padding: 20px 20px 20px 0px;
 }
 
@@ -75,13 +110,11 @@ td.last-child {
 td.last-first-child {
     padding: 20px 0px 20px 20px;
     border: none;
-    border-bottom-left-radius: 40px;
 }
 
 td.last-last-child {
     padding: 20px 20px 20px 0px;
     border: none;
-    border-bottom-right-radius: 40px;
 }
 
 td.last-center-child {
@@ -117,14 +150,74 @@ div.div-button {
 }
 
 section.list-quiz-section {
-    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-section.quiz-question {
+button.button-play {
+    background-color: green;
+    border-radius: 20px;
+    padding: 10px;
+    color: white;
+}
+
+@media screen and (min-width: 420px) {
+    section.list-quiz-section {
+        max-width: 90%;
+    }
+
+    th.first-child {
+        border-top-left-radius: 40px;
+    }
+    
+    th.last-child {
+        border-top-right-radius: 40px;
+    }
+
+    td.last-first-child {
+        border-bottom-left-radius: 40px;
+    }
+
+    td.last-last-child {
+        border-bottom-right-radius: 40px;
+    }
+}
+
+@media screen and (max-width: 419px) {
+    th.first-child {
+        border-top-left-radius: 0px;
+    }
+    
+    th.last-child {
+        border-top-right-radius: 0px;
+    }
+
+    td.last-first-child {
+        border-bottom-left-radius: 0px;
+    }
+
+    td.last-last-child {
+        border-bottom-right-radius: 0px;
+    }
+
+    section.list-quiz-section {
+        width: 100%;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    table.list-quiz-table {
+        width: 100%;
+    }
+}
+
+/* Quiz page (when you play the quiz) */
+
+section.quiz-section {
     margin-right: auto;
     margin-left: auto;
     margin-top: 5%;
-    align-items: center;
+    text-align: center;
     max-height: 90%;
     max-width: 90%;
 }
@@ -133,13 +226,6 @@ div.question-div {
     max-width: 100%;
     max-height: 100%;
     margin-top: 5%;
-}
-
-button.button-play {
-    background-color: green;
-    border-radius: 20px;
-    padding: 10px;
-    color: white;
 }
 
 button.button-start-quiz {

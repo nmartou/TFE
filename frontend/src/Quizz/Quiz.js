@@ -77,7 +77,7 @@ function Quiz(props) {
 
     return(
         <div className='quiz'>
-            <section className='quiz-question'>
+            <section className='quiz-section'>
                 {currentStatus === -1 ? 
                     (user && token ? (
                         <div className='question-div'>

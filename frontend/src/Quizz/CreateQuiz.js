@@ -120,6 +120,7 @@ export default class CreateQuiz extends Component {
 
     handleSubmit(e) {
         console.log(this.state);
+        if(this.state.title === "") return false;
         axios.post("http://localhost:5000/api/quiz/create", this.state)
             .then((response) => {
                 console.log("Post success !");
@@ -171,15 +172,14 @@ export default class CreateQuiz extends Component {
 
     render() {
         return(
-            <div>
+            <div className='create-quiz'>
                 <section className='create-quiz'>
-                    <form id="quiz-form" onSubmit={this.handleSubmit}>
-                        <h2>Quiz creator</h2>
-                        
-                        <input type="button" className='btn btn-primary' onClick={this.handleSubmit} value="Envoyer" /><br />
-                        <input type="button" className='btn btn-primary' onClick={this.addQuestion} value="Ajouter question" /><br />
-                        <label>Temps du décompte (pas de valeur ou 0 = pas de limite de temps) : </label>
+                    <form className="quiz-form" onSubmit={this.handleSubmit}>
+                        <h2 className='create-quiz-main-title'>Quiz creator</h2>
+                        <h4>Timer</h4>
+                        <label className='create-quiz-label-timer'>Temps du décompte (pas de valeur ou 0 = pas de limite de temps) : </label>
                         <input type='text' className='input' onChange={this.setTimer} placeholder="Temps en seconde" />
+                        <h4>Questionnaire</h4><p>(Choisir la réponse de la question en cochant la bulle correspondante)</p>
                         <h1>{this.state.title}</h1>
                         <input type='text' className='input' onChange={this.setTitle} required placeholder="Titre du Questionnaire" />
                         {this.state.content.map((item) => (
@@ -189,16 +189,18 @@ export default class CreateQuiz extends Component {
                                 {item.choice.map((res) => (
                                     <div key={1000 + res.pos}>
                                         <label className="ques">Réponse {res.letter} : </label>
-                                        <input type="radio" value={res.pos} name={item.id} required onChange={this.handleChangeChoice} />
+                                        <input type="radio" value={res.pos} name={item.id} required onChange={this.handleChangeChoice} /><br />
                                         <input id={item.id + '-' + res.pos.toString()} className="input" required type="text" onChange={this.handleChange}></input>
                                         <input type="button" id={item.id + '-' + res.pos.toString()} className="cross-btn bi bi-x" onClick={this.deleteChoice} value="X" />
                                     </div>
                                 ))}
-                                <input type='button' className="btn btn-primary" onClick={() => this.addChoice(item.id)} value="Ajouter une réponse" />
-                                <input type='button' className="btn btn-outline-danger" onClick={() => this.deleteQuestion(item.id)} value="Supprimer" />
+                                <input type='button' className="create-quiz-add-response" onClick={() => this.addChoice(item.id)} value="Ajouter une réponse" /><br />
+                                <input type='button' className="btn btn-outline-danger create-quiz-delete-question" onClick={() => this.deleteQuestion(item.id)} value="Supprimer question" />
                             </div>
                         ))}
+                        <input type="button" className='create-quiz-add-question' onClick={this.addQuestion} value="Ajouter question" /><br />
                         <input className='btn btn-primary' type="submit"  value="Envoyer" />
+                        {/*<button className='btn btn-primary' onClick={this.handleSubmit}>Envoyer</button>*/}
                     </form>
                 </section>
                 

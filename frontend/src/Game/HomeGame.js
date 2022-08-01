@@ -11,7 +11,7 @@ export default class HomeGame extends Component {
     render() {
         return (
             <div className='home-game'>
-                <p>Home Game page</p>
+                <h1 className='home-game-title'>Home Game page</h1>
                 <section className='game-section'>
                     <a href='/games/FootballJumper'>
                         <img className='img-games' alt='Bande dessinée Qui a volé OL-Bot, tome 1' src={logo}></img>

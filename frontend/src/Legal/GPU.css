@@ -1,0 +1,12 @@
+div.GPU {
+    background-color: #F2E3D5;
+    margin-top: 30px;
+}
+
+a.gpu-link {
+    color: rgb(49, 79, 176);
+}
+
+a.gpu-link:hover {
+    color: grey;
+}

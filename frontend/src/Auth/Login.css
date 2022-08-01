@@ -1,4 +1,4 @@
-form#login {
+form.login, form.signup {
     margin: auto;
     width: 30%;
     align-items: center;
@@ -10,26 +10,40 @@ form#login {
     margin-bottom: 30px;
 }
 
-form {
-    margin: auto;
-    width: 30%;
-    align-items: center;
-    background-color: whitesmoke;
-    border-radius: 20px;
-    padding: 20px;
-    border: solid black 2px;
-    margin-top: 30px;
+@media screen and (max-width: 899px) {
+    form.login, form.signup {
+        width: 80%;
+    }
+}
+
+h2.signup-title, h2.login-title {
     margin-bottom: 30px;
 }
 
-h2 {
-    margin-bottom: 30px;
-}
+/* SignUp page */
 
-.signup {
+a.gpu {
     color: blue;
 }
 
-.signup:hover {
+a.gpu:hover {
+    color: grey;
+}
+
+input.signup-checkbox {
+    margin-right: 5px;
+}
+
+div.signup-gpu {
+    margin-bottom: 20px;
+}
+
+/* Login page */
+
+a.signup {
+    color: blue;
+}
+
+a.signup:hover {
     color: lightblue;
 }

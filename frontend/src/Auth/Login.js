@@ -20,8 +20,8 @@ export default function Login() {
     return (
         <div>
             <ToastContainer />
-            <form id="login" onSubmit={handleSubmit}>
-                <h2>Se connecter</h2>
+            <form className="login" onSubmit={handleSubmit}>
+                <h2 className='login-title'>Se connecter</h2>
                 <div className="form-outline mb-4">
                     <input placeholder='Adresse mail' type="email" id="form2Example1" className="form-control" onChange={(e) => setMailAddress(e.target.value)} value={mailAddress} required />
                     <label className="form-label" htmlFor="form2Example1">Adresse mail</label>

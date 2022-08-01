@@ -10,11 +10,13 @@ import HomeGame from './Game/HomeGame';
 import FootballJumper from './Game/FootballJumper';
 import SignUp from "./Auth/SignUp";
 import Login from "./Auth/Login";
-import NavBar from './NavBar/NavBar';
+import NavBar from './HeaderAndFooter/NavBar';
 import ListQuiz from './Quizz/ListQuiz';
 import { Provider } from 'react-redux';
 import store from './Slice/Store';
 import Quiz from './Quizz/Quiz';
+import GPU from './Legal/GPU';
+import Footer from './HeaderAndFooter/Footer';
 
 //Return all routes of the site
 function App() {
@@ -32,9 +34,11 @@ function App() {
             <Route path='login' element={<Login />} />
             <Route path='quiz' element={<ListQuiz />} />
             <Route path='quiz/:id' element={<Quiz />} />
+            <Route path='gpu' element={<GPU />} />
             <Route path='*' element={<Home />} />
           </Routes>
         </BrowserRouter>
+        <Footer />
       </Provider>
     </AuthProvider>
   );
