@@ -3,6 +3,7 @@ import "./HeaderAndFooter.css";
 import { AuthContext } from "../Auth/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Icon from "../assets/icon-login.png";
 
 export default function NavBar() {
     const { user, setUser, auth, token, setToken, logout, setIsLoading, isLoading } = useContext(AuthContext);
@@ -59,9 +60,15 @@ export default function NavBar() {
                             <a className="nav-link" href="/quiz">Quiz</a>
                         </li>
                         {user && token ? (
-                            <li className="nav-item">
-                                <a className="nav-link" href="/" onClick={logout}>Se déconnecter</a>
-                            </li>) : (
+                            <>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="/account">Mon compte</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="/" onClick={logout}>Se déconnecter</a>
+                                </li>
+                            </>
+                            ) : (
                             <>
                                 <li className="nav-item">
                                     <a className="nav-link" href="/login">Se connecter</a>

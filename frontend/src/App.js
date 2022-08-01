@@ -17,6 +17,7 @@ import store from './Slice/Store';
 import Quiz from './Quizz/Quiz';
 import GPU from './Legal/GPU';
 import Footer from './HeaderAndFooter/Footer';
+import Account from './Auth/Account';
 
 //Return all routes of the site
 function App() {
@@ -35,6 +36,7 @@ function App() {
             <Route path='quiz' element={<ListQuiz />} />
             <Route path='quiz/:id' element={<Quiz />} />
             <Route path='gpu' element={<GPU />} />
+            <Route path='account' element={<Account />} />
             <Route path='*' element={<Home />} />
           </Routes>
         </BrowserRouter>
