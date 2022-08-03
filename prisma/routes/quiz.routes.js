@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const QuizController = require('../controllers/QuizControllers');
+const auth = require('../middlewares/auth');
 
 router.route('/create')
-    .post(QuizController.createQuiz)
+    .post(auth, QuizController.createQuiz)
 
 router.route('/')
     .get(QuizController.getQuiz)

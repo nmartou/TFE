@@ -9,8 +9,21 @@ const prisma = new PrismaClient();
 const authController = {
     register : async (req, res, next) => {
         try {
-            //let user = await auth.register(req.body);
             let { pseudo, mail_address, password } = req.body;
+            const exist = await prisma.user.findFirst({
+                where: {
+                    OR: [
+                        {pseudo: pseudo},
+                        {mail_address: mail_address}
+                    ]
+                }
+            });
+            if(exist) {
+                return res.status(409).json({
+                    status: false,
+                    message: 'User arleady exist',
+                });
+            }
             password = await argon2.hash(password, {type: argon2.argon2id});
             const user = await prisma.user.create({
                 data: {
@@ -29,7 +42,7 @@ const authController = {
         }
         catch (e) {
             next(createError(e));
-            //res.json({message: e});
+            res.json({message: e});
         }
     },
     login : async (req, res, next) => {
@@ -68,6 +81,24 @@ const authController = {
         }
         catch (e) {
             next(createError(e.statusCode, e.message))
+        }
+    },
+    delete : async (req, res, next) => {
+        try {
+            const { id } = req.params;
+            const user = await prisma.user.delete({
+                where: {
+                    id_user: parseInt(id)
+                }
+            });
+            res.status(200).json({
+                status: true,
+                message: 'User deleted successfully',
+                data: user
+            });
+        }
+        catch (e) {
+            next(createError(e.statusCode, e.message));
         }
     }
 }

@@ -41,8 +41,8 @@ model user {
   id_score       Int?
   id_score_quizz Int?
   is_verified    Boolean?     @default(false)
-  score_game     score_game?  @relation(fields: [id_score], references: [id_score], onDelete: NoAction, onUpdate: NoAction, map: "user_ibfk_1")
-  score_quizz    score_quizz? @relation(fields: [id_score_quizz], references: [id_score_quizz], onDelete: NoAction, onUpdate: NoAction, map: "user_ibfk_2")
+  score_game     score_game?  @relation(fields: [id_score], references: [id_score], onDelete: SetNull, onUpdate: NoAction, map: "user_ibfk_1")
+  score_quizz    score_quizz? @relation(fields: [id_score_quizz], references: [id_score_quizz], onDelete: SetNull, onUpdate: NoAction, map: "user_ibfk_2")
 
   @@index([id_score], map: "id_score")
   @@index([id_score_quizz], map: "id_score_quizz")

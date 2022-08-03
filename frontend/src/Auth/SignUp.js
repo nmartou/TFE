@@ -40,6 +40,7 @@ class SignUp extends Component {
             })
             .catch((err) => {
                 console.log(err);
+                toast.error("Erreur lors de l'inscription ! Le pseudonyme ou l'adresse e-mail est sûrement déjà utilisé");
             })
     }
 

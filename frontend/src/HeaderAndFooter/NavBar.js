@@ -21,9 +21,6 @@ export default function NavBar() {
             } else if(tkn && !usr) {
                 auth();
             }
-            else {
-                setUser(true);
-            }
         }
         setIsLoading(false);
     }, [token, user]);

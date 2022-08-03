@@ -36,6 +36,7 @@ export function AuthProvider(props) {
         setToken(null);
         localStorage.removeItem("user");
         localStorage.removeItem("token");
+        window.location.href = "/";
     }
 
     const auth = async() => {

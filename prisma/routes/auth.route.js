@@ -11,4 +11,7 @@ router.route("/login")
 router.route("/")
     .get(auth, user.all)
 
+router.route("/delete/:id")
+    .delete(auth, user.delete)
+
 module.exports = router;

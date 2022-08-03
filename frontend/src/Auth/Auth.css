@@ -4,6 +4,12 @@ div.account {
     background-color: #F2E3D5;
 }
 
+p.account-not-connected {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 a.account-link-login {
     color: blue;
 }
@@ -54,4 +60,35 @@ div.account-info {
 
 button.account-delete-button {
     margin-top: 100px;
+}
+
+div.account-pop-up {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    border: solid black 3px;
+    width: 40%;
+    display: block;
+}
+
+input.account-pop-up-input {
+    margin-bottom: 1px;
+    border-radius: 30px;
+    padding: 10px;
+    width: 90%;
+}
+
+div.account-pop-up-div-input {
+    text-align: center;
+}
+
+.display-block {
+    display: block;
+}
+
+.display-none {
+    display: none;
 }
