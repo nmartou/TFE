@@ -1,0 +1,45 @@
+/* Navigation bar */
+
+nav {
+    background-color: black;
+    padding: 10px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+img.icon-login {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+/* Footer */
+
+footer.footer {
+    background-color: black;
+    padding: 10px;
+    color: white;
+    width: 100%;
+    margin-top: 150px;
+}
+
+div.footer-gpu {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 2%;
+}
+
+a.footer-gpu {
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+a.footer-gpu:hover {
+    color: rgb(108, 195, 223);
+}

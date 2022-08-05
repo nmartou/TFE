@@ -1,0 +1,34 @@
+.home-game {
+    text-align: center;
+    align-items: center;
+}
+
+.img-games {
+    width: 180px;
+    margin: 30px;
+    border-radius: 10px;
+    display: inline-block;
+    opacity: 1;
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.img-games:hover {
+    opacity: .5;
+}
+
+section.game-section {
+    max-width: 800px;
+    border-radius: 10px;
+    margin: auto;
+    min-height: 200px;
+}
+
+.img-like {
+    width: 50px;
+}
+
+.home-game-title {
+    color: white;
+    margin-top: 5%;
+}

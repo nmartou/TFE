@@ -1,0 +1,211 @@
+body {
+    background: linear-gradient(#012E40, #766453);
+    background-repeat: no-repeat;
+    height: 100%;
+    margin: 0px;
+    padding: 0;
+    background-attachment: fixed;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+div.home {
+    background-color: linear-gradient(#012E40, #0F4F5A);
+    background-image: url("../assets/dessinateur.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    text-align: center;
+}
+
+section.author-section, section.actu-section {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section.invisible-section {
+    margin: 0px;
+    height: 5px;
+}
+
+.author-title {
+    margin-top: 15%;
+    text-align: center;
+    background-color: #024959;
+    width: 30%;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    margin-bottom: 20px;
+    border: solid white 3px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+section.author-section {
+    background: linear-gradient(#024959, 70%, #037f9b);
+    border-radius: 20px;
+    border: solid white 3px;
+}
+
+div.author-text {
+    width: 50%;
+    margin: 20px;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: white;
+    padding: 5px;
+}
+
+div.author-img {
+    width: 50%;
+    margin: 20px;
+    text-align: center;
+}
+
+div.author-img img {
+    border-radius: 20px;
+}
+
+@media screen and (min-width: 800px) {
+    section.author-section {
+        display: flex;
+    }
+
+    section.actu-section {
+        display: flex;
+    }
+
+    .actu {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 799px) {
+    section.author-section {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        border: none;
+        border-radius: 0px;
+    }
+
+    section.invisible-section {
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
+
+    div.author-text {
+        width: 100%;
+        margin: 0px;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+    }
+
+    div.author-img {
+        width: 100%;
+        margin: 0px;
+        padding-bottom: 10px;
+    }
+
+    div.author-img img {
+        width: 200px;
+        border-radius: 20px;
+    }
+
+    .author-title {
+        width: 90%;
+    }
+
+    .actu {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    section.actu-section {
+        width: 100%;
+    }
+
+    img.bd-second {
+        display: none;
+    }
+}
+
+.know-more-button {
+    border: none;
+    padding: 5px;
+    background-color: #F2E3D5;
+    border-radius: 5px;
+}
+
+.know-more-button a {
+    color: black;
+}
+
+.know-more-button a:active {
+    color: black;
+}
+
+.know-more-button a:hover {
+    color: grey;
+}
+
+.actu-title {
+    text-align: center;
+    color: white;
+    margin-top: 5%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.actu {
+    border-radius: 10px;
+    border: solid white 3px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #024959;
+    color: white;
+    padding: 10px;
+}
+
+.actu img {
+    max-width: 250px;
+    max-height: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+section.actu-section {
+    width: 100%;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.actu-date {
+    color: lightgrey;
+    font-size: 12px;
+}
+
+section.bd-section {
+    width: 100%;
+    text-align: center;
+    margin-top: 5%;
+    background-color: #F2E3D5;
+    margin-bottom: 5%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+div.bd-div img {
+    width: 200px;
+    margin-right: 20px;
+    margin-left: 20px;
+    border-radius: 20px;
+    border: solid black 2px;
+}

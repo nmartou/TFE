@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model quizz {
+  id_quizz    Int           @id @default(autoincrement())
+  title       String        @db.VarChar(50)
+  limit_time  Int?
+  content     String?       @db.MediumText
+  score_quizz score_quizz[]
+}
+
+model score_game {
+  id_score   Int    @id @default(autoincrement())
+  id_user    Int    
+  game_name  String @db.VarChar(50)
+  best_score Float  @db.Float
+  user       user   @relation(fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction, map: "score_game_ibfk_1")
+
+  @@index([id_user], map: "id_user")
+}
+
+model score_quizz {
+  id_score_quizz Int    @id @default(autoincrement())
+  id_quizz       Int
+  id_user        Int
+  best_score     Float  @db.Float
+  max_score      Float  @db.Float
+  quizz          quizz  @relation(fields: [id_quizz], references: [id_quizz], onDelete: NoAction, onUpdate: NoAction, map: "score_quizz_ibfk_1")
+  user           user   @relation(fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction, map: "score_quizz_ibfk_2")
+
+  @@index([id_quizz], map: "id_quizz")
+  @@index([id_user], map: "id_user")
+}
+
+model user {
+  id_user        Int          @id @unique @default(autoincrement())
+  pseudo         String       @unique(map: "pseudo") @db.VarChar(50)
+  password       String       @db.VarChar(100)
+  mail_address   String       @unique(map: "mail_address") @db.VarChar(100)
+  status         String?      @default("user") @db.VarChar(10)
+  is_verified    Boolean?     @default(false)
+
+  score_game     score_game[]
+  score_quizz    score_quizz[]
+}

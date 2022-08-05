@@ -1,0 +1,265 @@
+/* Create quiz page */
+
+section.create-quiz {
+    background-color: #F2E3D5;
+    border: solid black 3px;
+    border-radius: 30px;
+    padding: 20px;
+    margin-top: 30px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    width: 80%;
+}
+
+form.quiz-form {
+    width: 100%;
+}
+
+h2.create-quiz-main-title {
+    padding: 10px;
+    border: solid black 2px;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 300px;
+}
+
+label.create-quiz-label-timer {
+    margin-right: 5px;
+}
+
+.input {
+    border-radius: 50px;
+    height: 50px;
+    border: 1px solid rgb(39, 39, 39);
+    padding: 0px 20px 0px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+input.create-quiz-add-response {
+    border-radius: 20px;
+    background-color: #F2E3D5;
+    padding: 10px;
+    border: solid grey 1px;
+    margin-bottom: 10px;
+}
+
+input.create-quiz-add-question {
+    border-radius: 20px;
+    background-color: #012E40;
+    color: white;
+    padding: 10px;
+    border: solid grey 1px;
+    margin-bottom: 20px;
+}
+
+input.create-quiz-delete-question {
+    margin-bottom: 10px;
+}
+
+/* List quiz page*/
+
+div.list-quiz {
+    text-align: center;
+}
+
+.cross-btn {
+    border: none;
+    background-color: whitesmoke;
+    font-size: 1.5em;
+    color: grey;
+}
+
+.ques {
+    margin-right: 5px;
+}
+
+tr {
+    background-color: #c8d8e4;
+    margin-bottom: 10px;
+    text-align: left;
+    width: auto;
+}
+
+th, td {
+    margin-bottom: 10px;
+}
+
+th.first-child {
+    padding: 20px 0px 20px 20px;
+}
+
+th.last-child {
+    padding: 20px 20px 20px 0px;
+}
+
+th {
+    border-bottom: 2px solid black;
+}
+
+td {
+    border-bottom: 1px solid grey;
+}
+
+td.first-child {
+    padding: 20px 0px 20px 20px;
+}
+
+td.last-child {
+    padding: 20px 20px 20px 0px;
+}
+
+td.last-first-child {
+    padding: 20px 0px 20px 20px;
+    border: none;
+}
+
+td.last-last-child {
+    padding: 20px 20px 20px 0px;
+    border: none;
+}
+
+td.last-center-child {
+    border: none;
+    padding: 20px;
+}
+
+.center-child {
+    padding: 20px;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+tbody, thead {
+    width: 90%;
+}
+
+button.btn-list-quiz {
+    background-color: #c8d8e4;
+    border-radius: 40px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+div.div-button {
+    text-align: right;
+}
+
+section.list-quiz-section {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button.button-play {
+    background-color: green;
+    border-radius: 20px;
+    padding: 10px;
+    color: white;
+}
+
+@media screen and (min-width: 420px) {
+    section.list-quiz-section {
+        max-width: 90%;
+    }
+
+    th.first-child {
+        border-top-left-radius: 40px;
+    }
+    
+    th.last-child {
+        border-top-right-radius: 40px;
+    }
+
+    td.last-first-child {
+        border-bottom-left-radius: 40px;
+    }
+
+    td.last-last-child {
+        border-bottom-right-radius: 40px;
+    }
+}
+
+@media screen and (max-width: 419px) {
+    th.first-child {
+        border-top-left-radius: 0px;
+    }
+    
+    th.last-child {
+        border-top-right-radius: 0px;
+    }
+
+    td.last-first-child {
+        border-bottom-left-radius: 0px;
+    }
+
+    td.last-last-child {
+        border-bottom-right-radius: 0px;
+    }
+
+    section.list-quiz-section {
+        width: 100%;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    table.list-quiz-table {
+        width: 100%;
+    }
+}
+
+/* Quiz page (when you play the quiz) */
+
+section.quiz-section {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 5%;
+    text-align: center;
+    max-height: 90%;
+    max-width: 90%;
+}
+
+div.question-div {
+    max-width: 100%;
+    max-height: 100%;
+    margin-top: 5%;
+    margin-bottom: 25%;
+    color: white;
+}
+
+button.button-start-quiz {
+    background-color: green;
+    border-radius: 20px;
+    padding: 10px;
+    color: white;
+}
+
+button.button-response {
+    background-color: white;
+    padding: 10px;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px;
+    -webkit-transition: background-color 1s ease-out;
+    -moz-transition: background-color 1s ease-out;
+    -o-transition: background-color 1s ease-out;
+    transition: background-color 1s ease-out;
+}
+
+button.button-response.button-good-response {
+    background-color: green;
+    color: white;
+}
+
+button.button-response.button-bad-response {
+    background-color: red;
+    color: white;
+}
