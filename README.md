@@ -5,6 +5,7 @@
 ## Prisma
 
 - Prisma (ORM) peut faire des sienne si il n'est pas assez mis à jour car ceux qui le développent le mettent à jour très régulièrement.
+S'il ne l'est pas il faut le mettre à jour manuellement sans passer par la commande générale de npm (npm install) car celle-ci ne met pas à jour prisma.
 
 # Projet en local
 

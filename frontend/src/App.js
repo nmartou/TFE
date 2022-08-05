@@ -19,7 +19,9 @@ import GPU from './Legal/GPU';
 import Footer from './HeaderAndFooter/Footer';
 import Account from './Auth/Account';
 
-//Return all routes of the site
+/**
+ * @description: Function to render the app and set the store, the AuthContext, the footer, the navbar and the routes
+ */
 function App() {
   return (
     <AuthProvider>

@@ -17,19 +17,25 @@ model quizz {
 
 model score_game {
   id_score   Int    @id @default(autoincrement())
+  id_user    Int    
   game_name  String @db.VarChar(50)
   best_score Float  @db.Float
-  user       user[]
+  user       user   @relation(fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction, map: "score_game_ibfk_1")
+
+  @@index([id_user], map: "id_user")
 }
 
 model score_quizz {
   id_score_quizz Int    @id @default(autoincrement())
   id_quizz       Int
+  id_user        Int
   best_score     Float  @db.Float
+  max_score      Float  @db.Float
   quizz          quizz  @relation(fields: [id_quizz], references: [id_quizz], onDelete: NoAction, onUpdate: NoAction, map: "score_quizz_ibfk_1")
-  user           user[]
+  user           user   @relation(fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction, map: "score_quizz_ibfk_2")
 
   @@index([id_quizz], map: "id_quizz")
+  @@index([id_user], map: "id_user")
 }
 
 model user {
@@ -38,12 +44,8 @@ model user {
   password       String       @db.VarChar(100)
   mail_address   String       @unique(map: "mail_address") @db.VarChar(100)
   status         String?      @default("user") @db.VarChar(10)
-  id_score       Int?
-  id_score_quizz Int?
   is_verified    Boolean?     @default(false)
-  score_game     score_game?  @relation(fields: [id_score], references: [id_score], onDelete: SetNull, onUpdate: NoAction, map: "user_ibfk_1")
-  score_quizz    score_quizz? @relation(fields: [id_score_quizz], references: [id_score_quizz], onDelete: SetNull, onUpdate: NoAction, map: "user_ibfk_2")
 
-  @@index([id_score], map: "id_score")
-  @@index([id_score_quizz], map: "id_score_quizz")
+  score_game     score_game[]
+  score_quizz    score_quizz[]
 }

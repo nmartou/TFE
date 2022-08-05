@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { mapDispatchToProps, mapStateToProps } from '../Slice/Dispatch';
 import './Quiz.css';
+import axios from 'axios';
+import { API_URL } from '../utils';
+import { toast } from 'react-toastify';
+
+let interval;
 
 function Quiz(props) {
     const quiz = props.quiz;
@@ -18,9 +23,13 @@ function Quiz(props) {
     const minutesRef = useRef(minutes);
     secondsRef.current = seconds;
     minutesRef.current = minutes;
+    let min, sec;
 
     const currentQuiz = quiz.currentQuiz;
 
+    /**
+     * @description: Function to load the timer data at the beginning of the loading of the page if there is ones
+     */
     useEffect(() => {
         if(currentStatus === 0) {
             if(currentQuiz.limit_time) {
@@ -29,11 +38,13 @@ function Quiz(props) {
                 setSeconds(second);
                 setMinutes(minute);
                 setStartingTimer(true);
-                console.log(minutes + ":" + seconds);
             }
         }
     }, [currentStatus]);
 
+    /**
+     * @description: Function to start the timer function if there is a timer
+     */
     useEffect(() => {
         if(startingTimer) {
             startTimer();
@@ -41,29 +52,60 @@ function Quiz(props) {
     }
     , [startingTimer]);
 
+    /**
+     * @description: Function to send the responses to the database when all responses are done
+     */
+    useEffect(() => {
+        if(currentStatus === -2) {
+            sendResponses();
+        }
+    }, [currentStatus]);
+
+    /**
+     * @description: Function to go to the next question when the user click on a response during the quiz
+     * @param {number} id: index of the response
+     * 
+     */
     const nextQuestion = async(id) => {
         if(currentQuiz.content[currentStatus].response == id.toString()) {
-            document.getElementById(id).classList.add("button-good-response");
             setCurrentResponses(currentResponses + 1);
+            document.getElementById(id).classList.add("button-good-response");
         }
         else {
             document.getElementById(id).classList.add("button-bad-response");
         }
-        setTimeout(() => { setCurrentStatus(currentQuiz.content.length - 1 <= currentStatus ? -2 : currentStatus + 1) }, 1000);
+        setTimeout(() => {
+            if(currentQuiz.content.length - 1 <= currentStatus) {
+                setCurrentStatus(-2);
+                setStartingTimer(false);
+                clearInterval(interval);
+                //sendQuiz();
+            }
+            else{
+                setCurrentStatus(currentStatus + 1);
+            }
+        }, 1000);
         setTimeout(() => { document.getElementById(id).classList.remove("button-bad-response") }, 999);
         setTimeout(() => { document.getElementById(id).classList.remove("button-good-response") }, 999);
     }
 
+    /**
+     * @description: Function to start the timer
+     */
     const startTimer = () => {
-        let interval = setInterval(() => {
-            console.log(minutes + ":" + seconds);
-            if(seconds > 0) {
-                setSeconds(seconds => seconds - 1);
+        min = minutes;
+        sec = seconds;
+        interval = setInterval(() => {
+            if(sec > 0) {
+                sec -= 1;
+                setSeconds(sec);
             }
-            else if(seconds === 0) {
-                if(minutes > 0) {
-                    setMinutes(minutes => minutes - 1);
-                    setSeconds(59);
+            else if(sec === 0) {
+                if(min > 0) {
+                    sec = 59;
+                    min -= 1;
+                    setMinutes(min);
+                    setSeconds(sec);
                 }
                 else {
                     setCurrentStatus(-2);
@@ -71,9 +113,87 @@ function Quiz(props) {
                 }
             }
         }, 1000);
-        //return () => clearInterval(interval);
+        return () => clearInterval(interval);
     }
 
+    /**
+     * @description: Function to send the number of good responses to the database
+     */
+    const sendResponses = () => {
+        /*axios.put(API_URL + '/quiz/response/', 
+            {
+                id_user: user.id_user,
+                id_quizz: currentQuiz.id_quizz,
+                best_score: currentResponses,
+                max_score: currentQuiz.content.length
+            },
+            {
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            })
+        .then(res => {
+            console.log(res);
+            toast.success(res.data.message);
+        }).catch(err => {
+            console.log(err);
+            toast.error(err);
+        });*/
+
+
+        axios.get(API_URL + '/quiz/response/' + user.id_user + "/" + currentQuiz.id_quizz, 
+            {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+            .then(res => {
+                if(res.data.get) {
+                    axios.put(API_URL + '/quiz/response',
+                        {
+                            best_score: currentResponses, 
+                            id_quizz: currentQuiz.id_quizz, 
+                            max_score: currentQuiz.content.length, 
+                            id_user: user.id_user
+                        },
+                        {
+                            headers: {
+                                'Authorization': 'Bearer ' + token
+                            }
+                        })
+                        .then(res => {
+                            toast.success(res.data.message);
+                        })
+                        .catch(err => {
+                            toast.error(err);
+                        });
+                }
+                else {
+                    console.log("2", res);
+                    axios.post(API_URL + '/quiz/response', 
+                        {
+                            best_score: currentResponses, 
+                            id_quizz: currentQuiz.id_quizz, 
+                            max_score: currentQuiz.content.length, 
+                            id_user: user.id_user
+                        }, 
+                        {
+                            headers: {
+                                'Authorization': 'Bearer ' + token
+                            }
+                        })
+                        .then(res => {
+                            toast.success(res.data.message);
+                        })
+                        .catch(err => {
+                            toast.error(err);
+                        });
+                }
+            })
+            .catch(err => {
+                toast.error(err);
+            });
+    }
 
     return(
         <div className='quiz'>
@@ -95,11 +215,15 @@ function Quiz(props) {
                         {currentStatus === -2 ? (
                             <div>
                                 <p>Merci d'avoir joué ! Votre score est de {currentResponses} sur {currentQuiz.content.length} !</p>
-                                <Link to="/quiz"><button className='btn btn-primary'>Retour aux quiz</button></Link>
+                                <Link to="/quiz"><button className='btn btn-primary' onClick={() => clearInterval(interval)}>Retour aux quiz</button></Link>
                             </div>
                             ) : (
                             <div>
-                                {currentQuiz.limit_time ? <h2>Temps restant : {minutes < 10 ? "0"+minutes : minutes}:{seconds < 10 ? "0" + seconds : seconds}</h2> : <></>}
+                                {currentQuiz.limit_time ? 
+                                    <h2>
+                                        Temps restant : {minutes < 10 ? "0" + minutes : minutes}:{seconds < 10 ? "0" + seconds : seconds}
+                                    </h2> 
+                                : <></>}
                                 <h1>{currentQuiz.content[currentStatus].question}</h1>
                                 {currentQuiz.content[currentStatus].choice.map((choice, index) => (
                                     <button 

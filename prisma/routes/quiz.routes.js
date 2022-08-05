@@ -11,4 +11,11 @@ router.route('/')
 router.route('/all')
     .get(QuizController.getAllQuiz)
 
+router.route('/response')
+    .post(auth, QuizController.createResponse)
+    .put(auth, QuizController.updateResponse)
+
+router.route('/response/:id_user/:id_quizz')
+    .get(auth, QuizController.getResponse)
+
 module.exports = router;

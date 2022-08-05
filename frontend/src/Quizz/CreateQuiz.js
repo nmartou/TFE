@@ -119,9 +119,8 @@ export default class CreateQuiz extends Component {
     }
 
     handleSubmit(e) {
-        console.log(this.state);
         if(this.state.title === "") return false;
-        axios.post("http://localhost:5000/api/quiz/create", this.state)
+        axios.post("http://localhost:5000/api/quiz/create", this.state, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}})
             .then((response) => {
                 console.log("Post success !");
                 toast.success('Quiz créé avec succès !');
@@ -137,7 +136,6 @@ export default class CreateQuiz extends Component {
 
     setTimer(event) {
         let value = event.target.value;
-        console.log(value);
         if(Number.isInteger(parseInt(value)) && value > 0) {
             this.setState({limitTime: parseInt(value)});
         }

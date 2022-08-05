@@ -1,11 +1,16 @@
 /* Create quiz page */
 
 section.create-quiz {
+    background-color: #F2E3D5;
+    border: solid black 3px;
+    border-radius: 30px;
+    padding: 20px;
+    margin-top: 30px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     border: none;
-    width: 90%;
+    width: 80%;
 }
 
 form.quiz-form {
@@ -55,7 +60,7 @@ input.create-quiz-delete-question {
     margin-bottom: 10px;
 }
 
-/********************/
+/* List quiz page*/
 
 div.list-quiz {
     text-align: center;
@@ -226,6 +231,8 @@ div.question-div {
     max-width: 100%;
     max-height: 100%;
     margin-top: 5%;
+    margin-bottom: 25%;
+    color: white;
 }
 
 button.button-start-quiz {
