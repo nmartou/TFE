@@ -38,5 +38,6 @@
   },
   "devDependencies": {
     "prisma": "^4.2.1"
-  }
+  },
+  "proxy": "https://maingoval.herokuapp.com/"
 }
