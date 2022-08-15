@@ -24,8 +24,10 @@ const QuizController = {
     getAllQuiz : async(req, res, next) => {
         try {
             const quizz = await prisma.quizz.findMany();
+            console.log(quizz)
             res.json(quizz);
         } catch (error) {
+            console.log(error);
             res.json({message: error});
         }
     },
