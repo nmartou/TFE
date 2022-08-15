@@ -9,6 +9,9 @@ require("dotenv").config();
 const app = express(); 
 const port = process.env.PORT || 5000;
 
+const path = require('path')
+app.use(express.static(path.resolve(__dirname, "./frontend/build")));
+
 app.use(express.static('public', {
   setHeaders: function(res, path) {
       if(path.endsWith(".unityweb")){
