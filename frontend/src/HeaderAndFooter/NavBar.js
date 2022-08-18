@@ -3,7 +3,6 @@ import "./HeaderAndFooter.css";
 import { AuthContext } from "../Auth/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Icon from "../assets/icon-login.png";
 
 export default function NavBar() {
     const { user, setUser, auth, token, setToken, logout, setIsLoading, isLoading } = useContext(AuthContext);
