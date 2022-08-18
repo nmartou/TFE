@@ -60,9 +60,9 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 app.use("/api/quiz", quizRoutes);
 app.use("/api/auth", authRoutes);
 
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
   next(createError.NotFound());
-})
+})*/
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
