@@ -53,6 +53,15 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
   next()
 });*/
 
+app.use(function(request, response, next) { //A config
+
+  if (process.env.NODE_ENV != 'development' && !request.secure) {
+     return response.redirect("https://" + request.headers.host + request.url);
+  }
+
+  next();
+})
+
 app.use("/api/quiz", quizRoutes);
 app.use("/api/auth", authRoutes);
 
@@ -68,6 +77,8 @@ app.use((err, req, res, next) => {
   })
 })
 
-
+app.get('*', function(req, res) {
+  res.sendFile('index.html', {root: path.join(__dirname, './frontend/build/')});
+});
 
 module.exports = app;
