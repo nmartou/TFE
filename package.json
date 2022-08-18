@@ -39,5 +39,8 @@
   "devDependencies": {
     "prisma": "^4.2.1"
   },
+  "engines": {
+    "node": "14.18.3"
+  },
   "proxy": "https://maingoval.herokuapp.com/"
 }
