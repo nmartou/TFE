@@ -42,25 +42,20 @@ app.use(cors(corsOptions));
 // This displays message that the server running and listening to specified port
 app.listen(port, () => console.log(`Listening on port ${port}`)); 
 
-// create a GET route
-/*app.get('/express_backend', (req, res) => { 
-  res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
-});*/
-
 /*app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"),
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"),
   next()
 });*/
 
-app.use(function(request, response, next) { //A config
+/*app.use(function(request, response, next) { //A config
 
   if (process.env.NODE_ENV != 'development' && !request.secure) {
      return response.redirect("https://" + request.headers.host + request.url);
   }
 
   next();
-})
+})*/
 
 app.use("/api/quiz", quizRoutes);
 app.use("/api/auth", authRoutes);
