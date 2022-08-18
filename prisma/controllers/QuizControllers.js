@@ -15,6 +15,7 @@ const QuizController = {
             });
             res.json(quiz);
         } catch (error) {
+            next(createError(error.message));
             res.status(500).json({message: error});
         }
     },
@@ -28,6 +29,7 @@ const QuizController = {
             res.json(quizz);
         } catch (error) {
             console.log(error);
+            next(createError(error.message));
             res.json({message: error});
         }
     },
