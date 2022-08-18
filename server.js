@@ -72,8 +72,12 @@ app.use((err, req, res, next) => {
   })
 })
 
-app.get('*', function(req, res) {
+/*app.get('*', function(req, res) {
   res.sendFile('index.html', {root: path.join(__dirname, './frontend/build/')});
-});
+});*/
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/frontend/build/index.html'))
+})
 
 module.exports = app;
