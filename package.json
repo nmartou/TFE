@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "heroku-prebuild": "npm add -D prisma && npm install && npx prisma generate && npx prisma db push",
     "heroku-postbuild": "cd frontend && npm install && npm run build"
   },
@@ -42,5 +42,5 @@
   "engines": {
     "node": "14.18.3"
   },
-  "proxy": "https://maingoval.herokuapp.com/"
+  "proxy": "http://localhost:3000"
 }
