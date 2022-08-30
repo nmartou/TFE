@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "generate" : "npx prisma generate",
     "heroku-prebuild": "npm i prisma && npm install && npm run generate",
     "heroku-postbuild": "cd frontend && npm install && npm run build"
