@@ -1,6 +1,7 @@
 import React, { useState, createContext } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { API_URL } from '../utils';
 
 export const AuthContext = createContext();
 
@@ -13,7 +14,7 @@ export function AuthProvider(props) {
     const login = async(mail, password) => {
         setIsLoading(true);
         setError(null);
-        await axios.post('http://localhost:5000/api/auth/login', {mail_address: mail, password: password})
+        await axios.post(API_URL + '/auth/login', {mail_address: mail, password: password})
             .then((res) => {
                 toast.success('Connexion réussie');
                 setUser(res.data.user);
@@ -43,7 +44,7 @@ export function AuthProvider(props) {
         setIsLoading(true);
         setError(null);
         try {
-            await axios.get('http://localhost:5000/api/auth/')
+            await axios.get(API_URL + '/auth/')
                 .then((res) => {
                     console.log(res);
                     //setUser(res.data.user);

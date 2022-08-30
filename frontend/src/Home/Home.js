@@ -4,13 +4,12 @@ import './Home.css';
 import Francois from "../assets/Francois_Maingoval.jpg";
 import Ada from '../assets/ada-enigma.jfif';
 import Barbara from '../assets/barbara-wolf.jpg';
-import Satan from '../assets/empreinte-de-satan.jpg';
+//import Satan from '../assets/empreinte-de-satan.jpg';
 import Corpus from '../assets/corpus-christi_illustration.jpg';
 import OL from '../assets/OL-coupe.jpg';
 import Neron from '../assets/alix-neron.jpg';
 
 export default function Home() {
-    const { user, token } = useContext(AuthContext);
 
     return(
         <div className='home'>

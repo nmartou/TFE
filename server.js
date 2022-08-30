@@ -9,6 +9,9 @@ require("dotenv").config();
 const app = express(); 
 const port = process.env.PORT || 5000;
 
+const path = require('path')
+app.use(express.static(path.resolve(__dirname, "./frontend/build")));
+
 app.use(express.static('public', {
   setHeaders: function(res, path) {
       if(path.endsWith(".unityweb")){
@@ -39,23 +42,27 @@ app.use(cors(corsOptions));
 // This displays message that the server running and listening to specified port
 app.listen(port, () => console.log(`Listening on port ${port}`)); 
 
-// create a GET route
-/*app.get('/express_backend', (req, res) => { 
-  res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
-});*/
-
 /*app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"),
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"),
   next()
 });*/
 
+/*app.use(function(request, response, next) {
+
+  if (process.env.NODE_ENV != 'development' && !request.secure) {
+     return response.redirect("https://" + request.headers.host + request.url);
+  }
+
+  next();
+})*/
+
 app.use("/api/quiz", quizRoutes);
 app.use("/api/auth", authRoutes);
 
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
   next(createError.NotFound());
-})
+})*/
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
@@ -65,6 +72,12 @@ app.use((err, req, res, next) => {
   })
 })
 
+/*app.get('*', function(req, res) {
+  res.sendFile('index.html', {root: path.join(__dirname, './frontend/build/')});
+});*/
 
+app.get('/*', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/frontend/build/index.html'))
+})
 
 module.exports = app;

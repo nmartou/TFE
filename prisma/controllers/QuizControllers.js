@@ -15,6 +15,7 @@ const QuizController = {
             });
             res.json(quiz);
         } catch (error) {
+            next(createError(error.message));
             res.status(500).json({message: error});
         }
     },
@@ -24,8 +25,11 @@ const QuizController = {
     getAllQuiz : async(req, res, next) => {
         try {
             const quizz = await prisma.quizz.findMany();
+            console.log(quizz)
             res.json(quizz);
         } catch (error) {
+            console.log(error);
+            next(createError(error.message));
             res.json({message: error});
         }
     },

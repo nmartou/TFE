@@ -40,7 +40,7 @@ function Quiz(props) {
                 setStartingTimer(true);
             }
         }
-    }, [currentStatus]);
+    }, [currentStatus, currentQuiz.limit_time]);
 
     /**
      * @description: Function to start the timer function if there is a timer
