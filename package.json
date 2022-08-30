@@ -8,7 +8,7 @@
     "start": "node server.js",
     "generate" : "npx prisma generate",
     "heroku-prebuild": "npm i prisma && npm install && npm run generate",
-    "heroku-postbuild": "npx prisma db push && cd frontend && npm install && npm run build"
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
   },
   "repository": {
     "type": "git",
