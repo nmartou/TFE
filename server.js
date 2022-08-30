@@ -58,9 +58,11 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
   next();
 })*/
 
+// Routes used for the API
 app.use("/api/quiz", quizRoutes);
 app.use("/api/auth", authRoutes);
 
+// Catch all bad requests and send back a 404 error
 /*app.use((req, res, next) => {
   next(createError.NotFound());
 })*/

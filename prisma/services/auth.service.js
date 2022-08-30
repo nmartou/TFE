@@ -8,12 +8,11 @@ const jwt = require('jsonwebtoken');
 const {signAccessToken, verifyAccessToken} = require('../../utils');
 
 class AuthService {
+    // Use to register new user
     static async register(data) {
         try {
             let { pseudo, mail_address, password } = data;
-            console.log("1");
             password = await argon2.hash(password, {type: argon2.argon2id});
-            console.log("2", data);
             const user = await prisma.user.create({
                 data: {
                     pseudo: pseudo,
@@ -21,9 +20,7 @@ class AuthService {
                     password: password
                 }
             });
-            console.log("3", password);
             data.accessToken = await signAccessToken(user);
-            console.log("4");
             return data;
         }
         catch (e) {
@@ -31,6 +28,7 @@ class AuthService {
         }
     }
     
+    // Use to login user
     static async login(data) {
         const { email, password } = data;
         const user = await prisma.user.findUnique({
@@ -48,6 +46,7 @@ class AuthService {
         return { ...user, accessToken }
     }
 
+    // Use to get user data
     static async all() {
         const allUsers = await prisma.user.findMany();
         return allUsers;

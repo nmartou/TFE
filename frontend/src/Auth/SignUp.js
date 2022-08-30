@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import "./Auth.css";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { API_URL } from '../utils';
+import { API_URL, URL } from '../utils';
 
 
 class SignUp extends Component {
@@ -24,6 +24,11 @@ class SignUp extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
+    /**
+     * @description - Function to submit form for 
+     * @param {*} event 
+     * @returns 
+     */
     onSubmit(event) {
         event.preventDefault();
         if(this.state.password.length < 8) return toast.error("Le mot de passe doit contenir au moins 8 caractères");
@@ -35,7 +40,7 @@ class SignUp extends Component {
             .then((res) => {
                 console.log(res);
                 if(res.status === 200) {
-                    window.location.href = "http://localhost:3000/login";
+                    window.location.href = URL + "/login";
                 }
             })
             .catch((err) => {

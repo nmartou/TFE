@@ -7,6 +7,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 const authController = {
+    // Use to register new user
     register : async (req, res, next) => {
         try {
             let { pseudo, mail_address, password } = req.body;
@@ -45,6 +46,7 @@ const authController = {
             res.json({message: e});
         }
     },
+    // Use to login user
     login : async (req, res, next) => {
          try {
             const { mail_address, password } = req.body;
@@ -70,6 +72,7 @@ const authController = {
             next(createError(e.statusCode, e.message))
         }
     },
+    // Use to get users' data
     all : async (req, res, next) => {
         try {
             const users = await auth.all();
@@ -83,6 +86,7 @@ const authController = {
             next(createError(e.statusCode, e.message))
         }
     },
+    // Use to delete user
     delete : async (req, res, next) => {
         try {
             const { id } = req.params;

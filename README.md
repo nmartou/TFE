@@ -33,11 +33,11 @@ Dès que la base de données est en place, il faut configurer les paramètres de
 
     DATABASE_URL="mysql://user:password@localhost:3306/DBName"
 
-Après cela fait, nous pouvons synchroniser le la base de données avec le fichier de structure de Prisma.
+Après cela fait, nous pouvons synchroniser la base de données avec le fichier de structure de Prisma.
 
-    npx prisma db push
+    npx prisma generate
 
-Cela va créer la base de données et la structure de la base de données.
+Si la base de données se trouve à distance, il faut s'assurer de la bonne ouverture des ports ainsi que des règles de firewall mise en place.
 
 Et voilà, le projet est prêt à être utilisé.
 

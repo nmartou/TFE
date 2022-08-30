@@ -35,6 +35,12 @@ export default class CreateQuiz extends Component {
         this.setTimer = this.setTimer.bind(this);
     }
 
+    /**
+     * @description Adapt the order of the choices of a question
+     * @param {*} choices 
+     * @param {*} num 
+     * @returns
+     */
     adaptOrder(choices, num) {
         for(let id in choices) {
             if(id < num) continue;
@@ -46,7 +52,10 @@ export default class CreateQuiz extends Component {
         return choices;
     }
 
-    //Supprime le choix désiré
+    /** 
+     * @description Delete a choice you want to
+     * @param {this} event
+     */
     deleteChoice(event) {
         let arrayId = event.target.id.split("-");
         let items = this.state.content;

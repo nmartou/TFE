@@ -31,6 +31,9 @@ export default function NavBar() {
         }
     }, [isUser]);
 
+    /**
+     * @description: Function to check if the user is logged in or not
+     */
     const CheckLocation = () => {
         let location = window.location.pathname;
         let usr = localStorage.getItem('user');

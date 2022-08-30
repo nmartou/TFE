@@ -1,6 +1,7 @@
 const jwt = require('../../utils');
 const createError = require('http-errors');
 
+// Use to check if the request have a valid token
 const auth = async (req, res, next) => {
     if (!req.headers.authorization) {
         return next(createError.Unauthorized('Access token is required'))
