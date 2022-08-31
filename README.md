@@ -1,4 +1,29 @@
-# TFE
+# Documentation
+
+Le site réalisé se trouve être en deux partie distincte : le frontend et le backend.
+
+Le backend se situe dans le dossier courant du projet et la partie frontend se situe dans le dossier frontend.
+
+Le backend est composé de plusieurs technologies : Node.js, Express, Prisma, et beaucoup d'autres plus mineures.
+
+La base de données correspondante au projet est une base de données MySQL (ou MariaDB).
+
+Le frontend a été réalisé avec ReactJS, Bootstrap et CSS.
+
+## Backend
+
+Afin de rendre fonctionnel une route, il faut spécifier la route dans le fichier server.js qui est le fichier de lancement du backend. Ensuite,
+il faut ajouter la route précise dans un fichier route se trouvant dans le dossier routes. Ainsi, il ne reste plus qu'a créer la requête vers la base de données
+dans un fichier controlleur se trouvant dans le dossier controllers.
+
+## Frontend
+
+Toutes le site se trouve dans le dossier "/frontend/src/".
+
+Le fichier de lancement se trouve être index.js mais la majorité du travail se fait dans le ficher App.js. On y retrouve les routes ainsi que certaines fonctionnalités
+avancées.
+
+Ensuite toutes les pages sont classées dans des dossiers afin de structurer son développement.
 
 # Erreurs rencontrées
 

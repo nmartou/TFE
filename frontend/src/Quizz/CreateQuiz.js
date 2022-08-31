@@ -7,8 +7,6 @@ const alpha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
                 "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
 export default class CreateQuiz extends Component {
-     
-
     constructor(props) {
         super(props);
         this.state = {
@@ -89,7 +87,8 @@ export default class CreateQuiz extends Component {
     deleteQuestion(id) {
         let stringId = id.split('-');
         let items = this.state.content;
-        items[parseInt(stringId[1])].splice(parseInt(stringId[1]), 1);
+        if(items.length === 1) return false;
+        items.splice(parseInt(stringId[1]), 1);
         this.setState({content: items});
     }
 

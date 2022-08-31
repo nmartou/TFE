@@ -5,6 +5,9 @@ import "./Quiz.css";
 import { mapDispatchToProps, mapStateToProps } from "../Slice/Dispatch";
 import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { API_URL } from "../utils";
+import { toast } from "react-toastify";
 
 function ListQuiz(props) {
     const quiz = props.quiz;
@@ -23,6 +26,18 @@ function ListQuiz(props) {
 
     const setCurrentQuiz = (object) => {
         dispatch(props.setCurrentQuiz(object));
+    }
+
+    const onDeleteQuiz = async(event) => {
+        if(!window.confirm("Etes-vous sûr de vouloir supprimer ce quiz ?")) return false;
+        await axios.delete(API_URL + "/quiz/delete/" + event.target.id,
+            {headers: {Authorization: "Bearer " + token}})
+                    .then(() => {
+                        toast.success("Le quiz a bien été supprimé !");
+                    })
+                    .catch(() => {
+                        toast.error("Une erreur est survenue !");
+                    });
     }
 
     return (
@@ -52,6 +67,7 @@ function ListQuiz(props) {
                                     <Link to={{pathname:'/quiz/' + quizz.id_quizz, state: quizz }}>
                                         <button className="button-play" onClick={() => setCurrentQuiz(quizz)}>Jouer</button>
                                     </Link>
+                                    {user && user.status === "admin" ? <button id={quizz.id_quizz} className="btn btn-outline-danger button-delete-quiz" onClick={onDeleteQuiz}>Supprimer</button> : <></>}
                                 </td>
                             </tr>
                     ))) : (<></>)}

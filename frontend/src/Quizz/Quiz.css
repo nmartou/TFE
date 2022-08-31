@@ -216,6 +216,11 @@ button.button-play {
     }
 }
 
+.button-delete-quiz {
+    border-radius: 20px;
+    margin-left: 10px;
+}
+
 /* Quiz page (when you play the quiz) */
 
 section.quiz-section {

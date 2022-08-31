@@ -49,7 +49,7 @@ export default function NavBar() {
     return (
         <div>
             <nav className="nav justify-content-center navbar-expand-lg">
-                <a className="navbar-brand" href="/">Accueil</a>
+                <a className="navbar-brand" href="/">Maingoval</a>
 
                     <ul className="nav justify-content-center">
                         <li className="navbar-item">

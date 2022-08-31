@@ -1,6 +1,8 @@
 const express = require('express');
 const quizRoutes = require('./prisma/routes/quiz.routes');
 const authRoutes = require('./prisma/routes/auth.route');
+const homeRoutes = require('./prisma/routes/home.route');
+
 const createError = require('http-errors');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -61,6 +63,7 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 // Routes used for the API
 app.use("/api/quiz", quizRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/home", homeRoutes);
 
 // Catch all bad requests and send back a 404 error
 /*app.use((req, res, next) => {

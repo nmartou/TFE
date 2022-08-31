@@ -209,3 +209,42 @@ div.bd-div img {
     border-radius: 20px;
     border: solid black 2px;
 }
+
+select.select-actu {
+    border-radius: 20px;
+    height: 40px;
+    width: 80%;
+    padding: 5px;
+}
+
+input.input-add-actu {
+    border-radius: 20px;
+    height: 40px;
+    width: 80%;
+    padding: 10px;
+}
+
+input.input-add-actu-date {
+    border-radius: 20px;
+    height: 40px;
+    padding: 5px;
+}
+
+input.input-add-actu-image {
+    border-radius: 20px;
+    height: 40px;
+    width: 80%;
+    padding: 5px;
+}
+
+label.label-add-actu {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+button.button-add-actu {
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}

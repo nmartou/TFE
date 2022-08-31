@@ -31,7 +31,7 @@ model score_quizz {
   id_user        Int
   best_score     Float  @db.Float
   max_score      Float  @db.Float
-  quizz          quizz  @relation(fields: [id_quizz], references: [id_quizz], onDelete: NoAction, onUpdate: NoAction, map: "score_quizz_ibfk_1")
+  quizz          quizz  @relation(fields: [id_quizz], references: [id_quizz], onDelete: Cascade, onUpdate: Cascade, map: "score_quizz_ibfk_1")
   user           user   @relation(fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction, map: "score_quizz_ibfk_2")
 
   @@index([id_quizz], map: "id_quizz")
@@ -48,4 +48,22 @@ model user {
 
   score_game     score_game[]
   score_quizz    score_quizz[]
+}
+
+model actuality {
+  id_actuality      Int    @id @unique @default(autoincrement())
+  title             String @db.VarChar(100)
+  image             String @db.VarChar(255)
+  date              String @db.VarChar(20)
+  link              String @db.VarChar(255)
+
+  actual_page_data  actual_page_data[] 
+}
+
+model actual_page_data {
+  id_element    Int         @id @unique @default(autoincrement())
+  id_actuality  Int?        
+  actuality     actuality?  @relation(fields: [id_actuality], references: [id_actuality], onDelete: SetNull, onUpdate: Cascade, map: "actual_page_data_ibfk_1")
+
+  @@index([id_actuality], map: "id_actuality")
 }

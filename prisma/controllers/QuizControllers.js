@@ -140,6 +140,21 @@ const QuizController = {
             console.log(error.message);
             //res.status(404).json({message: error.message});
         }
+    },
+    // Use to delete a quiz
+    deleteQuiz : async(req, res, next) => {
+        try {
+            const { id_quizz } = req.params;
+            const deleteQuiz = await prisma.quizz.delete({
+                where: {
+                    id_quizz: parseInt(id_quizz)
+                }
+            });
+            res.status(200).json({message: "Quiz supprimé !", deleteQuiz});
+        } catch (error) {
+            next(error.message);
+            res.status(404).json({message: error.message});
+        }
     }
 }
 
