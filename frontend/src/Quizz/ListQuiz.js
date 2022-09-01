@@ -34,6 +34,7 @@ function ListQuiz(props) {
             {headers: {Authorization: "Bearer " + token}})
                     .then(() => {
                         toast.success("Le quiz a bien été supprimé !");
+                        window.location.reload();
                     })
                     .catch(() => {
                         toast.error("Une erreur est survenue !");

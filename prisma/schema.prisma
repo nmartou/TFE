@@ -17,10 +17,10 @@ model quizz {
 
 model score_game {
   id_score   Int    @id @default(autoincrement())
-  id_user    Int    
+  id_user    Int?    
   game_name  String @db.VarChar(50)
   best_score Float  @db.Float
-  user       user   @relation(fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction, map: "score_game_ibfk_1")
+  user       user?   @relation(fields: [id_user], references: [id_user], onDelete: SetNull, onUpdate: Cascade, map: "score_game_ibfk_1")
 
   @@index([id_user], map: "id_user")
 }
@@ -28,11 +28,11 @@ model score_game {
 model score_quizz {
   id_score_quizz Int    @id @default(autoincrement())
   id_quizz       Int
-  id_user        Int
+  id_user        Int?
   best_score     Float  @db.Float
   max_score      Float  @db.Float
   quizz          quizz  @relation(fields: [id_quizz], references: [id_quizz], onDelete: Cascade, onUpdate: Cascade, map: "score_quizz_ibfk_1")
-  user           user   @relation(fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction, map: "score_quizz_ibfk_2")
+  user           user?   @relation(fields: [id_user], references: [id_user], onDelete: SetNull, onUpdate: Cascade, map: "score_quizz_ibfk_2")
 
   @@index([id_quizz], map: "id_quizz")
   @@index([id_user], map: "id_user")
