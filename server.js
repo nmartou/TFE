@@ -12,7 +12,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 const path = require('path')
-app.use(express.static(path.resolve(__dirname, "./frontend/build")));
+app.use("/assets", express.static(path.resolve(__dirname + "/frontend/src/assets/home/")));
 
 app.use(express.static('public', {
   setHeaders: function(res, path) {
